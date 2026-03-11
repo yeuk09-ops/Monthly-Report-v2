@@ -1,0 +1,1082 @@
+{
+  "meta": {
+    "title": "F&F 26년 자금계획",
+    "period": "2026년 1월 기준",
+    "unit": "백만원",
+    "updatedAt": "2026-02-20"
+  },
+  "kpi": {
+    "beginningCash": 270713,
+    "operatingCF": 488166,
+    "investmentCF": -63785,
+    "financingCF": 0,
+    "endingCash": 695094,
+    "beginningCashPrev": 54804,
+    "operatingCFPrev": 479667,
+    "investmentCFPrev": -218343,
+    "financingCFPrev": -45414,
+    "endingCashPrev": 270714
+  },
+  "beginningCash": {
+    "label": "기초현금",
+    "y24Annual": 191280,
+    "y25H1": 54804,
+    "y25Monthly": {
+      "7": 83270,
+      "8": 116171,
+      "9": 173639,
+      "10": 188039,
+      "11": 161087,
+      "12": 224422
+    },
+    "y25Total": 54804,
+    "y26Monthly": {
+      "1": 270713,
+      "2": 315757,
+      "3": 406888,
+      "4": 408997,
+      "5": 410675,
+      "6": 506974,
+      "7": 535261,
+      "8": 567380,
+      "9": 576632,
+      "10": 542300,
+      "11": 522910,
+      "12": 627091
+    },
+    "y26Total": 270713,
+    "isEstimate": {
+      "1": false,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true
+    },
+    "isTotal": true
+  },
+  "operating": {
+    "total": {
+      "label": "① 영업 CASH FLOW",
+      "y24Annual": 508412,
+      "y25H1": 216865,
+      "y25Monthly": {
+        "7": 40190,
+        "8": 60604,
+        "9": 14493,
+        "10": 9234,
+        "11": 58971,
+        "12": 79310
+      },
+      "y25Total": 479667,
+      "y26Monthly": {
+        "1": 41281,
+        "2": 67312,
+        "3": 26893,
+        "4": 25294,
+        "5": 97024,
+        "6": 32320,
+        "7": 32925,
+        "8": 9627,
+        "9": -14613,
+        "10": -1400,
+        "11": 103921,
+        "12": 67582
+      },
+      "y26Total": 488166,
+      "isEstimate": {
+        "1": false,
+        "2": true,
+        "3": true,
+        "4": true,
+        "5": true,
+        "6": true,
+        "7": true,
+        "8": true,
+        "9": true,
+        "10": true,
+        "11": true,
+        "12": true
+      },
+      "isTotal": true
+    },
+    "subItems": [
+      {
+        "label": "국내수금",
+        "y25Total": 641665,
+        "y26Total": 705707,
+        "isSubItem": true
+      },
+      {
+        "label": "수출수금",
+        "y25Total": 841534,
+        "y26Total": 650954,
+        "isSubItem": true
+      },
+      {
+        "label": "(-) 지연수금",
+        "y25Total": -41100,
+        "y26Total": 41100,
+        "isSubItem": true
+      },
+      {
+        "label": "생산비",
+        "y25Total": -612237,
+        "y26Total": -551522,
+        "isSubItem": true
+      },
+      {
+        "label": "기타",
+        "y25Total": -350195,
+        "y26Total": -358073,
+        "isSubItem": true
+      }
+    ]
+  },
+  "investment": {
+    "total": {
+      "label": "② 투자 CASH FLOW",
+      "y24Annual": -689578,
+      "y25H1": -142985,
+      "y25Monthly": {
+        "7": -7289,
+        "8": -3136,
+        "9": -9878,
+        "10": -26401,
+        "11": 4364,
+        "12": -33018
+      },
+      "y25Total": -218343,
+      "y26Monthly": {
+        "1": 3763,
+        "2": 23819,
+        "3": -24784,
+        "4": -23616,
+        "5": -725,
+        "6": -4033,
+        "7": -806,
+        "8": -375,
+        "9": -19719,
+        "10": -17990,
+        "11": 260,
+        "12": 421
+      },
+      "y26Total": -63785,
+      "isEstimate": {
+        "1": false,
+        "2": true,
+        "3": true,
+        "4": true,
+        "5": true,
+        "6": true,
+        "7": true,
+        "8": true,
+        "9": true,
+        "10": true,
+        "11": true,
+        "12": true
+      },
+      "isTotal": true
+    },
+    "items": [
+      {
+        "label": "법인세납부",
+        "y24Annual": -118638,
+        "y25H1": -67598,
+        "y25Monthly": {
+          "7": -2760,
+          "8": 0,
+          "9": -19986,
+          "10": -19986,
+          "11": 0,
+          "12": 0
+        },
+        "y25Total": -110330,
+        "y26Monthly": {
+          "1": 0,
+          "2": 0,
+          "3": -40510,
+          "4": -44520,
+          "5": 0,
+          "6": -3970,
+          "7": 0,
+          "8": 0,
+          "9": -17400,
+          "10": -17400,
+          "11": 0,
+          "12": 0
+        },
+        "y26Total": -123800,
+        "isSubItem": true
+      },
+      {
+        "label": "배당",
+        "y24Annual": -64843,
+        "y25H1": -63893,
+        "y25Monthly": {
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "y25Total": -63893,
+        "y26Monthly": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": -101200,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "y26Total": -101200,
+        "isSubItem": true
+      },
+      {
+        "label": "자회사 지원(엔터/STO)",
+        "y24Annual": -20418,
+        "y25H1": -10270,
+        "y25Monthly": {
+          "7": -4248,
+          "8": -2799,
+          "9": 0,
+          "10": -4218,
+          "11": 0,
+          "12": -26498
+        },
+        "y25Total": -48033,
+        "y26Monthly": {
+          "1": -400,
+          "2": 25686,
+          "3": 400,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 7135
+        },
+        "y26Total": 32821,
+        "isSubItem": true
+      },
+      {
+        "label": "부동산·사옥",
+        "y24Annual": -378712,
+        "y25H1": -4003,
+        "y25Monthly": {
+          "7": -220,
+          "8": 0,
+          "9": 0,
+          "10": -2411,
+          "11": 4988,
+          "12": 0
+        },
+        "y25Total": -1646,
+        "y26Monthly": {
+          "1": 0,
+          "2": 0,
+          "3": 13800,
+          "4": 124400,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "y26Total": 138200,
+        "isSubItem": true
+      },
+      {
+        "label": "물류센터",
+        "y24Annual": -48007,
+        "y25H1": -140,
+        "y25Monthly": {
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": -1108,
+          "12": 0
+        },
+        "y25Total": -1248,
+        "y26Monthly": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "y26Total": 0,
+        "isSubItem": true
+      },
+      {
+        "label": "브랜드투자",
+        "y24Annual": -52290,
+        "y25Total": 0,
+        "y26Total": 0,
+        "isSubItem": true,
+        "y26Monthly": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        }
+      },
+      {
+        "label": "CAPEX 및 원천세/연금",
+        "y24Annual": -13728,
+        "y25H1": 1667,
+        "y25Monthly": {
+          "7": -61,
+          "8": -759,
+          "9": -1017,
+          "10": 250,
+          "11": 484,
+          "12": -6520
+        },
+        "y25Total": -5956,
+        "y26Monthly": {
+          "1": 4163,
+          "2": -1867,
+          "3": 1526,
+          "4": -2296,
+          "5": -725,
+          "6": -63,
+          "7": -806,
+          "8": -375,
+          "9": -2319,
+          "10": -590,
+          "11": 260,
+          "12": -6714
+        },
+        "y26Total": -9806,
+        "isSubItem": true
+      },
+      {
+        "label": "TMG",
+        "y25Monthly": {
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "y25Total": 0,
+        "y26Monthly": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "y26Total": 0,
+        "isSubItem": true,
+        "y24Annual": null
+      },
+      {
+        "label": "자사주/금융투자/빅텐츠",
+        "y24Annual": -40000,
+        "y25Monthly": {
+          "7": 0,
+          "8": 422,
+          "9": 11125,
+          "10": -36,
+          "11": 0,
+          "12": 0
+        },
+        "y25Total": 11511,
+        "y26Monthly": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "y26Total": 0,
+        "isSubItem": true
+      }
+    ]
+  },
+  "financing": {
+    "total": {
+      "label": "③ 조달 CASH FLOW",
+      "y24Annual": 44690,
+      "y25H1": -45414,
+      "y25Monthly": {
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 0,
+        "12": 0
+      },
+      "y25Total": -45414,
+      "y26Monthly": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 0,
+        "12": 0
+      },
+      "y26Total": 0,
+      "isEstimate": {
+        "1": false,
+        "2": true,
+        "3": true,
+        "4": true,
+        "5": true,
+        "6": true,
+        "7": true,
+        "8": true,
+        "9": true,
+        "10": true,
+        "11": true,
+        "12": true
+      },
+      "isTotal": true
+    },
+    "items": [
+      {
+        "label": "차입금 증감",
+        "y24Annual": 45000,
+        "y25H1": -45000,
+        "y25Monthly": {
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "y25Total": -45000,
+        "y26Monthly": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0
+        },
+        "y26Total": 0,
+        "isSubItem": true
+      },
+      {
+        "label": "이자비용 지급",
+        "y24Annual": -310,
+        "y25H1": -414,
+        "y25Monthly": {
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0
+        },
+        "y25Total": -414,
+        "y26Monthly": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0
+        },
+        "y26Total": 0,
+        "isSubItem": true
+      }
+    ]
+  },
+  "endingCash": {
+    "label": "조달후 기말잔액",
+    "y24Annual": 54804,
+    "y25H1": 83270,
+    "y25Monthly": {
+      "7": 116171,
+      "8": 173639,
+      "9": 188039,
+      "10": 161087,
+      "11": 224422,
+      "12": 270714
+    },
+    "y25Total": 270713,
+    "y26Monthly": {
+      "1": 315757,
+      "2": 406888,
+      "3": 408997,
+      "4": 410675,
+      "5": 506974,
+      "6": 535261,
+      "7": 567380,
+      "8": 576632,
+      "9": 542300,
+      "10": 522910,
+      "11": 627091,
+      "12": 695094
+    },
+    "y26Total": 695094,
+    "isEstimate": {
+      "1": false,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true,
+      "6": true,
+      "7": true,
+      "8": true,
+      "9": true,
+      "10": true,
+      "11": true,
+      "12": true
+    },
+    "isTotal": true
+  },
+  "ocBorrowingBalance": {
+    "label": "OC 차입금 잔액",
+    "y24Annual": 45000,
+    "y25Total": 0,
+    "y26Monthly": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0
+    },
+    "y26Total": 0
+  },
+  "currencyBalances": [
+    {
+      "currency": "KRW",
+      "label": "기말잔액(KRW)",
+      "amount": 266699,
+      "previousAmount": 172763,
+      "note": "원화 시재"
+    },
+    {
+      "currency": "USD",
+      "label": "기말잔액(USD)",
+      "amount": 112137,
+      "previousAmount": 97951,
+      "note": "USD 시재: 7,733만불"
+    },
+    {
+      "currency": "CNY",
+      "label": "기말잔액(CNY)",
+      "amount": 316258,
+      "previousAmount": 0,
+      "note": "CNY 시재: 15.39억 위안"
+    }
+  ],
+  "totalAssets": {
+    "label": "자산총액",
+    "y24Annual": 1924850,
+    "y25H1": 1891404,
+    "y25Monthly": {
+      "7": 2054160,
+      "8": 2150718,
+      "9": 2145196,
+      "10": 2120734,
+      "11": 2204300,
+      "12": 2190373
+    },
+    "y25Total": 2190373
+  },
+  "yoyComparison": [
+    {
+      "category": "영업",
+      "label": "국내수금",
+      "y25Value": 641665,
+      "y26Value": 705707,
+      "change": 64042,
+      "note": "내수출고 10% 증가 반영"
+    },
+    {
+      "category": "영업",
+      "label": "수출수금",
+      "y25Value": 841534,
+      "y26Value": 650954,
+      "change": -108380,
+      "note": "수출수금 1,900억 감소 (26년 중국법인 매입계획 25년 대비 77% 수준)"
+    },
+    {
+      "category": "영업",
+      "label": "(+) 지연수금",
+      "y25Value": -41100,
+      "y26Value": 41100,
+      "change": 0,
+      "note": ""
+    },
+    {
+      "category": "영업",
+      "label": "생산비",
+      "y25Value": -612237,
+      "y26Value": -551522,
+      "change": 60715,
+      "note": "전년대비 매출원가 10% 감소 반영(재고판매 등)"
+    },
+    {
+      "category": "영업",
+      "label": "기타",
+      "y25Value": -350195,
+      "y26Value": -358073,
+      "change": -7878,
+      "note": ""
+    },
+    {
+      "category": "투자",
+      "label": "법인세",
+      "y25Value": -110330,
+      "y26Value": -123800,
+      "change": -13470,
+      "note": ""
+    },
+    {
+      "category": "투자",
+      "label": "배당",
+      "y25Value": -63893,
+      "y26Value": -101200,
+      "change": -37307,
+      "note": "주당 2,700원* (38,307천주 - 자기주식 821천주)"
+    },
+    {
+      "category": "투자",
+      "label": "자회사투자",
+      "y25Value": -48033,
+      "y26Value": 37102,
+      "change": 85135,
+      "note": "STO 차입금 상환 기존 2200만불 + 추가 300만불"
+    },
+    {
+      "category": "투자",
+      "label": "역삼사옥",
+      "y25Value": -1646,
+      "y26Value": 138200,
+      "change": 139846,
+      "note": "3월 계약금 138억, 4월 잔금 1,244억수령예정"
+    },
+    {
+      "category": "투자",
+      "label": "기타",
+      "y25Value": 5559,
+      "y26Value": -9806,
+      "change": -15365,
+      "note": ""
+    },
+    {
+      "category": "조달",
+      "label": "사옥잔금/차입금상환",
+      "y25Value": -45414,
+      "y26Value": 0,
+      "change": 45414,
+      "note": "현재 차입금 없음"
+    }
+  ],
+  "highlights": [
+    {
+      "label": "26년 기말 추정현금",
+      "value": "6,994억",
+      "detail": "TMG 매각대금 제외",
+      "change": 212752,
+      "changeNote": "전년대비 +2,128억"
+    },
+    {
+      "label": "영업CF",
+      "value": "+4,882억",
+      "change": 8499,
+      "changeNote": "전년대비 +85억"
+    },
+    {
+      "label": "투자CF",
+      "value": "-595억",
+      "change": 158839,
+      "changeNote": "전년대비 +1,588억"
+    },
+    {
+      "label": "조달CF",
+      "value": "0억",
+      "change": 45414,
+      "changeNote": "전년대비 +454억 (무차입)"
+    }
+  ],
+  "monthlyTrend": [
+    {
+      "month": "25.1",
+      "displayLabel": "25.1",
+      "operatingCF": 66170,
+      "investmentCF": -3567,
+      "endingCash": 92268,
+      "isEstimate": false
+    },
+    {
+      "month": "25.2",
+      "displayLabel": "25.2",
+      "operatingCF": 27158,
+      "investmentCF": -1419,
+      "endingCash": 117941,
+      "isEstimate": false
+    },
+    {
+      "month": "25.3",
+      "displayLabel": "25.3",
+      "operatingCF": -13770,
+      "investmentCF": -31407,
+      "endingCash": 72699,
+      "isEstimate": false
+    },
+    {
+      "month": "25.4",
+      "displayLabel": "25.4",
+      "operatingCF": 71215,
+      "investmentCF": -100854,
+      "endingCash": 42985,
+      "isEstimate": false
+    },
+    {
+      "month": "25.5",
+      "displayLabel": "25.5",
+      "operatingCF": 24543,
+      "investmentCF": -4611,
+      "endingCash": 42848,
+      "isEstimate": false
+    },
+    {
+      "month": "25.6",
+      "displayLabel": "25.6",
+      "operatingCF": 41549,
+      "investmentCF": -1127,
+      "endingCash": 83270,
+      "isEstimate": false
+    },
+    {
+      "month": "25.7",
+      "displayLabel": "25.7",
+      "operatingCF": 40190,
+      "investmentCF": -7289,
+      "endingCash": 116171,
+      "isEstimate": false
+    },
+    {
+      "month": "25.8",
+      "displayLabel": "25.8",
+      "operatingCF": 60604,
+      "investmentCF": 6649,
+      "endingCash": 183423,
+      "isEstimate": false
+    },
+    {
+      "month": "25.9",
+      "displayLabel": "25.9",
+      "operatingCF": 14493,
+      "investmentCF": -19663,
+      "endingCash": 178253,
+      "isEstimate": false
+    },
+    {
+      "month": "25.10",
+      "displayLabel": "25.10",
+      "operatingCF": 9234,
+      "investmentCF": -26401,
+      "endingCash": 161086,
+      "isEstimate": false
+    },
+    {
+      "month": "25.11",
+      "displayLabel": "25.11",
+      "operatingCF": 58971,
+      "investmentCF": 4364,
+      "endingCash": 224421,
+      "isEstimate": false
+    },
+    {
+      "month": "25.12",
+      "displayLabel": "25.12",
+      "operatingCF": 79310,
+      "investmentCF": -33018,
+      "endingCash": 270713,
+      "isEstimate": false
+    },
+    {
+      "month": "26.1",
+      "displayLabel": "26.1",
+      "operatingCF": 41281,
+      "investmentCF": 3763,
+      "endingCash": 315757,
+      "isEstimate": false
+    },
+    {
+      "month": "26.2",
+      "displayLabel": "26.2(e)",
+      "operatingCF": 67312,
+      "investmentCF": 23819,
+      "endingCash": 406888,
+      "isEstimate": true
+    },
+    {
+      "month": "26.3",
+      "displayLabel": "26.3(e)",
+      "operatingCF": 26893,
+      "investmentCF": -24784,
+      "endingCash": 408997,
+      "isEstimate": true
+    },
+    {
+      "month": "26.4",
+      "displayLabel": "26.4(e)",
+      "operatingCF": 25294,
+      "investmentCF": -23616,
+      "endingCash": 410675,
+      "isEstimate": true
+    },
+    {
+      "month": "26.5",
+      "displayLabel": "26.5(e)",
+      "operatingCF": 97024,
+      "investmentCF": -725,
+      "endingCash": 506974,
+      "isEstimate": true
+    },
+    {
+      "month": "26.6",
+      "displayLabel": "26.6(e)",
+      "operatingCF": 32320,
+      "investmentCF": -4033,
+      "endingCash": 535261,
+      "isEstimate": true
+    },
+    {
+      "month": "26.7",
+      "displayLabel": "26.7(e)",
+      "operatingCF": 32925,
+      "investmentCF": -806,
+      "endingCash": 567380,
+      "isEstimate": true
+    },
+    {
+      "month": "26.8",
+      "displayLabel": "26.8(e)",
+      "operatingCF": 9627,
+      "investmentCF": -375,
+      "endingCash": 576632,
+      "isEstimate": true
+    },
+    {
+      "month": "26.9",
+      "displayLabel": "26.9(e)",
+      "operatingCF": -14613,
+      "investmentCF": -19719,
+      "endingCash": 542300,
+      "isEstimate": true
+    },
+    {
+      "month": "26.10",
+      "displayLabel": "26.10(e)",
+      "operatingCF": -1400,
+      "investmentCF": -17990,
+      "endingCash": 522910,
+      "isEstimate": true
+    },
+    {
+      "month": "26.11",
+      "displayLabel": "26.11(e)",
+      "operatingCF": 103921,
+      "investmentCF": 260,
+      "endingCash": 627091,
+      "isEstimate": true
+    },
+    {
+      "month": "26.12",
+      "displayLabel": "26.12(e)",
+      "operatingCF": 67582,
+      "investmentCF": 421,
+      "endingCash": 695094,
+      "isEstimate": true
+    }
+  ],
+  "insights": [
+    "26년 기말 추정현금 6,994억원으로 전년(2,707억) 대비 약 2.6배 증가 전망",
+    "영업CF +4,882억으로 안정적 현금 창출력 유지 (전년대비 +85억, +1.8%)",
+    "역삼사옥 매각대금 +1,382억 유입으로 투자CF 대폭 개선 (3월 계약금 138억, 4월 잔금 1,244억)",
+    "STO 차입금 상환 자금 회수 +371억 (2월 1,800만불 + 12월 500만불)",
+    "무차입 경영 기조 유지 - OC 차입금 잔액 0원, 조달CF 0"
+  ],
+  "warnings": [
+    "배당금 증가: 주당 2,700원 배당으로 전년대비 373억 증가 (총 1,012억)",
+    "법인세 납부 증가: 세전 5,321억 x 24.3% = 1,238억 (전년대비 +135억)",
+    "수출수금 1,900억 감소 전망 - 중국법인 매입계획이 전년대비 77% 수준",
+    "26년 2~12월 데이터는 추정치로 실적과 차이 발생 가능",
+    "HC 배당 의사결정사항 미확정 (2안: 195억, 3안: 313억)"
+  ],
+  "actionPlan": [
+    "역삼사옥 매각 1,382억 유입 활용: 3~4월 유동성 피크 시점에 단기 자금운용(MMF/RP) 적극 검토 필요",
+    "배당 +373억 증가(총 1,012억): 주주환원 확대 기조는 긍정적이나, FCF 대비 배당성향 적정성 지속 모니터링",
+    "수출수금 △1,900억 리스크 대응: 중국법인 매입 의존도 축소 전략 병행, 매출채권 회수기간 단축 방안 마련",
+    "무차입 경영 + 기말현금 6,994억: 잉여현금 활용 전략(M&A, 신사업 투자, 자사주 매입 등) 검토 권고",
+    "HC 배당 의사결정 미확정: 2안(195억) vs 3안(313억) 시나리오별 기말현금 영향도 분석 후 의사결정 지원 필요"
+  ],
+  "operatingCFAnalysis": {
+    "summary": "26년 영업CF 4,882억 (전년대비 +85억, +1.8%)",
+    "items": [
+      {
+        "category": "영업이익",
+        "y25Value": 510823,
+        "y26Value": 411056,
+        "change": -99767,
+        "detail": "26년 영업이익 4,111억원 (전년 5,108억 대비 △998억 감소)"
+      },
+      {
+        "category": "운전자본 증감",
+        "y25Value": -53556,
+        "y26Value": -9792,
+        "change": 43764,
+        "detail": "매출채권·재고자산 증감 - 매입채무 증감 반영. 국내수금 +640억(내수출고 10%↑) / 수출수금 △1,900억(중국매입 77%) / 지연수금 회수 +411억 / 생산비 절감 +607억"
+      },
+      {
+        "category": "비현금항목",
+        "y25Value": 31859,
+        "y26Value": 46661,
+        "change": 14802,
+        "detail": "감가상각비 239억 + 재고평가충당금 142억 + 자가임차료 86억 등 비현금성 비용"
+      },
+      {
+        "category": "중국선수금",
+        "y25Value": -24473,
+        "y26Value": 0,
+        "change": 24473,
+        "detail": "26년 '0' : 25년 선수금 상계 △650억 + 26년 추가 선수금 650억(추정) ※25년 △245억 : 24년 선수금 상계 △895억 + 25년 추가 선수금 650억"
+      },
+      {
+        "category": "기타운전자본 증감",
+        "y25Value": 15014,
+        "y26Value": 40241,
+        "change": 25227,
+        "detail": "미지급금, 선급금, 로열티 등 기타 운전자본 항목 (전체 정합성 조정 포함)"
+      }
+    ]
+  },
+  "operatingCFBridge": {
+    "total": 488166,
+    "operatingProfit": 411056,
+    "workingCapital": -9792,
+    "nonCash": 46661,
+    "others": 40241
+  },
+  "workingCapitalDetail": [
+    {
+      "label": "매출채권",
+      "y26Value": 1870,
+      "y25Value": 1965,
+      "change": -95
+    },
+    {
+      "label": "재고자산(-평가충당금)",
+      "y26Value": 2186,
+      "y25Value": 2193,
+      "change": -7
+    },
+    {
+      "label": "매입채무",
+      "y26Value": 704,
+      "y25Value": 905,
+      "change": -201
+    }
+  ],
+  "investmentYoY": [
+    {
+      "label": "법인세",
+      "y25Value": -110330,
+      "y26Value": -123800,
+      "change": -13470,
+      "note": "세전이익 5,321억 x 실효세율 24.3%"
+    },
+    {
+      "label": "배당",
+      "y25Value": -63893,
+      "y26Value": -101200,
+      "change": -37307,
+      "note": "주당 2,700원 (발행주식 38,307천주 - 자기주식 821천주)"
+    },
+    {
+      "label": "자회사(엔터/STO)",
+      "y25Value": -48033,
+      "y26Value": 32821,
+      "change": 80854,
+      "note": "STO 차입금 상환 자금 회수 (기존 2,200만불 + 추가 300만불)"
+    },
+    {
+      "label": "역삼사옥",
+      "y25Value": -1646,
+      "y26Value": 138200,
+      "change": 139846,
+      "note": "3월 계약금 138억, 4월 잔금 1,244억 수령 예정"
+    },
+    {
+      "label": "기타(CAPEX 등)",
+      "y25Value": 5559,
+      "y26Value": -9806,
+      "change": -15365,
+      "note": "CAPEX, 원천세, 연금 등 경상 투자지출"
+    }
+  ]
+}

@@ -1,0 +1,189 @@
+{
+  "meta": {
+    "company": "F&F Holdings",
+    "type": "별도",
+    "currentMonth": "2026년 1월",
+    "targetYear": "FY2026",
+    "unit": "억원",
+    "updatedAt": "2026-03-10",
+    "description": "손익 핵심 요인 → BS 추정 → 현금 변동 추적 대시보드"
+  },
+  "plDrivers": {
+    "title": "FY2026E 손익 증가 핵심 요인",
+    "drivers": [
+      {
+        "id": 1,
+        "label": "OC(F&F) 배당수입 확대",
+        "icon": "dividend",
+        "fy2025": 221.3,
+        "fy2026e": 351.5,
+        "change": 130.2,
+        "changePct": 58.8,
+        "description": "F&F 실적 호조로 배당 대폭 확대 (관계사배당 60.7→0 상쇄 후 순증 +69.5억)"
+      },
+      {
+        "id": 2,
+        "label": "역삼사옥 매각 처분이익",
+        "icon": "normalize",
+        "fy2025": 0,
+        "fy2026e": 176.3,
+        "change": 176.3,
+        "changePct": 100,
+        "description": "역삼사옥 매각 예정, 처분이익 발생 (매각대금 242.3억 현금유입)"
+      },
+      {
+        "id": 3,
+        "label": "투자평가손실 정상화",
+        "icon": "growth",
+        "fy2025": -53.3,
+        "fy2026e": 0,
+        "change": 53.3,
+        "changePct": 100,
+        "description": "FY2025 종속기업투자 평가손실 -53.3억 일시적 요인 해소"
+      }
+    ],
+    "plSummary": {
+      "revenue": { "fy2025": 576.5, "fy2026e": 646.4, "change": 69.9, "changePct": 12.1 },
+      "operatingProfit": { "fy2025": 375.6, "fy2026e": 444.6, "change": 69.0, "changePct": 18.4 },
+      "preTaxProfit": { "fy2025": 352.8, "fy2026e": 623.6, "change": 270.8, "changePct": 76.8 },
+      "netIncome": { "fy2025": 357.8, "fy2026e": 553.9, "change": 196.1, "changePct": 54.8 },
+      "netIncomeNote": "FY2025 법인세 저율(1.8%) → FY2026E 정상화(유효세율 11.2%), 세전이익은 +76.8% 증가"
+    }
+  },
+  "bsImpact": {
+    "title": "손익 → BS 추정 영향",
+    "description": "당기순이익 553.9억 - 배당 195.3억 = 이익잉여금 순증 +358.5억 → 자본총계 +358.5억",
+    "keyItems": [
+      { "label": "이익잉여금", "dec25": 25007.9, "jan26": 25014.7, "dec26e": 25366.5, "change": 358.5, "driver": "순이익 553.9억 - 배당금 195.3억", "highlight": true },
+      { "label": "현금성자산", "dec25": 628.1, "jan26": 751.6, "dec26e": 1502.8, "change": 874.7, "driver": "영업CF + 자산매각/회수", "highlight": true },
+      { "label": "자본총계", "dec25": 19668.0, "jan26": 19674.8, "dec26e": 20026.6, "change": 358.5, "driver": "이익잉여금 순증", "highlight": false },
+      { "label": "자산총계", "dec25": 19754.0, "jan26": 19759.5, "dec26e": 20191.1, "change": 437.0, "driver": "현금증가 + 투자자산 변동", "highlight": false }
+    ]
+  },
+  "cashImpact": {
+    "title": "손익 → 현금 추정 변동",
+    "description": "기초 628억 + 영업CF 492억 + 자산매각·회수 580억 - 배당 195억 - 법인세 1억 = 기말 1,503억 (+139.3%)",
+    "flow": {
+      "beginningCash": 628.1,
+      "operatingCF": 491.5,
+      "assetRecovery": 579.5,
+      "financingCF": -195.3,
+      "taxPayment": -0.9,
+      "endingCash": 1502.8,
+      "netChange": 874.7,
+      "netChangePct": 139.3
+    },
+    "operatingCFDetail": [
+      { "label": "지주부문(배당·수수료·운용)", "value": 352.1 },
+      { "label": "물류부문(매출-원가)", "value": 159.2 },
+      { "label": "브랜드사용료", "value": 39.0 },
+      { "label": "지주부문 지출", "value": -57.3 },
+      { "label": "기타(원천세·부가세 등)", "value": -1.5 }
+    ],
+    "investingCFDetail": [
+      { "label": "금융상품 회수", "value": 337.2 },
+      { "label": "역삼사옥 매각", "value": 242.3 }
+    ],
+    "financingCFDetail": [
+      { "label": "배당금 지급(25년 이익잉여금 처분)", "value": -195.3 }
+    ],
+    "waterfall": [
+      { "name": "기초현금", "value": 628.1, "type": "begin" },
+      { "name": "영업CF", "value": 491.5, "type": "positive" },
+      { "name": "금융자산회수", "value": 337.2, "type": "positive" },
+      { "name": "역삼사옥매각", "value": 242.3, "type": "positive" },
+      { "name": "배당지급", "value": -195.3, "type": "negative" },
+      { "name": "법인세", "value": -0.9, "type": "negative" },
+      { "name": "기말현금", "value": 1502.8, "type": "end" }
+    ]
+  },
+  "balanceSheet": {
+    "assets": [
+      { "label": "Ⅰ. 유동자산", "dec25": 776.1, "jan26": 784.9, "dec26e": 1536.1, "isHeader": true, "section": "asset" },
+      { "label": "현금및현금성자산", "dec25": 628.1, "jan26": 751.6, "dec26e": 1502.8, "isAlwaysVisible": true, "highlight": true },
+      { "label": "매출채권", "dec25": 19.7, "jan26": 22.9, "dec26e": 22.9, "isAlwaysVisible": true },
+      { "label": "기타유동자산", "dec25": 128.3, "jan26": 10.4, "dec26e": 10.4, "isSubItem": true, "highlight": true },
+      { "label": "Ⅱ. 비유동자산", "dec25": 18977.9, "jan26": 18974.6, "dec26e": 18655.0, "isHeader": true, "section": "asset" },
+      { "label": "투자주식/금융자산", "dec25": 18075.7, "jan26": 18075.7, "dec26e": 17856.7, "isAlwaysVisible": true },
+      { "label": "유무형자산(유형+투자부동산)", "dec25": 894.7, "jan26": 891.6, "dec26e": 792.1, "isAlwaysVisible": true, "highlight": true },
+      { "label": "사용권자산", "dec25": 7.4, "jan26": 7.3, "dec26e": 6.2, "isSubItem": true }
+    ],
+    "liabilities": [
+      { "label": "부채 합계", "dec25": 86.0, "jan26": 84.7, "dec26e": 164.5, "isHeader": true, "section": "liability" },
+      { "label": "미지급금", "dec25": 14.8, "jan26": 11.8, "dec26e": 16.8, "isAlwaysVisible": true },
+      { "label": "법인세부채", "dec25": 0.0, "jan26": 1.9, "dec26e": 63.9, "isAlwaysVisible": true, "highlight": true },
+      { "label": "리스부채", "dec25": 7.4, "jan26": 7.3, "dec26e": 6.2, "isSubItem": true },
+      { "label": "퇴직급여/충당부채", "dec25": 0.4, "jan26": 0.4, "dec26e": 0.4, "isSubItem": true },
+      { "label": "기타부채(예수보증금·이연법인세 등)", "dec25": 63.4, "jan26": 63.4, "dec26e": 77.3, "isSubItem": true }
+    ],
+    "equity": [
+      { "label": "Ⅰ. 자본금", "dec25": 195.6, "jan26": 195.6, "dec26e": 195.6, "isAlwaysVisible": true },
+      { "label": "Ⅱ. 자본잉여금", "dec25": 15473.7, "jan26": 15473.7, "dec26e": 15473.7, "isAlwaysVisible": true },
+      { "label": "Ⅲ. 기타자본구성요소", "dec25": -21037.7, "jan26": -21037.7, "dec26e": -21037.7, "isAlwaysVisible": true },
+      { "label": "Ⅳ. 기타포괄손익누계액", "dec25": 28.5, "jan26": 28.5, "dec26e": 29.0, "isSubItem": true },
+      { "label": "Ⅴ. 이익잉여금", "dec25": 25007.9, "jan26": 25014.7, "dec26e": 25366.5, "isAlwaysVisible": true, "highlight": true }
+    ],
+    "totals": [
+      { "label": "자산총계", "dec25": 19754.0, "jan26": 19759.5, "dec26e": 20191.1 },
+      { "label": "부채총계", "dec25": 86.0, "jan26": 84.7, "dec26e": 164.5 },
+      { "label": "자본총계", "dec25": 19668.0, "jan26": 19674.8, "dec26e": 20026.6 }
+    ]
+  },
+  "ratios": {
+    "debtRatio": { "label": "부채비율", "dec25": 0.4, "jan26": 0.4, "dec26e": 0.8, "unit": "%", "good": "low" },
+    "equityRatio": { "label": "자기자본비율", "dec25": 99.6, "jan26": 99.6, "dec26e": 99.2, "unit": "%", "good": "high" },
+    "currentRatio": { "label": "유동비율", "dec25": 2658.6, "jan26": 2803.0, "dec26e": 1564.3, "unit": "%", "good": "high" },
+    "operatingMargin": { "label": "영업이익률", "dec25": 65.1, "jan26": 65.1, "dec26e": 68.8, "unit": "%", "good": "high" },
+    "netMargin": { "label": "순이익률", "dec25": 62.1, "jan26": 62.1, "dec26e": 85.7, "unit": "%", "good": "high" },
+    "roe": { "label": "ROE", "dec25": 1.8, "jan26": 0.03, "dec26e": 2.8, "unit": "%", "good": "high" }
+  },
+  "assetComposition": [
+    { "name": "투자주식/금융자산", "value": 18075.7, "color": "#3B82F6" },
+    { "name": "유무형자산", "value": 891.6, "color": "#8B5CF6" },
+    { "name": "현금및현금성자산", "value": 751.6, "color": "#10B981" },
+    { "name": "매출채권", "value": 22.9, "color": "#F59E0B" },
+    { "name": "기타자산", "value": 18.1, "color": "#6B7280" }
+  ],
+  "assetThreshold": {
+    "title": "자산총계 2조원 초과 시 대응 요건",
+    "current": { "jan26": 19759.5, "dec26e": 20191.1 },
+    "threshold": 20000,
+    "items": [
+      { "id": 1, "requirement": "감사위원회 설치", "detail": "이사회 내 감사위원회 설치 의무 (위원 3인 이상, 독립이사 2/3 이상, 위원장 독립이사)", "basis": "상법 §542조의11", "urgency": "high" },
+      { "id": 2, "requirement": "독립이사(사외이사) 과반수", "detail": "이사 총수의 과반수를 독립이사로 구성 + 3인 이상 (2026.7.23 명칭변경 시행)", "basis": "상법 §542조의8 ①", "urgency": "high" },
+      { "id": 3, "requirement": "감사위원 분리선출 2인", "detail": "감사위원이 되는 이사를 분리선출, 2인 이상으로 확대 (2026.9.10 시행)", "basis": "상법 §542조의12 ②", "urgency": "high", "isNew": true },
+      { "id": 4, "requirement": "여성이사 선임 의무", "detail": "이사회를 특정 성으로만 구성 불가, 1명 이상 여성이사 선임 의무", "basis": "자본시장법 §165조의20", "urgency": "high", "isNew": true },
+      { "id": 5, "requirement": "집중투표제 의무화", "detail": "정관으로 집중투표제 배제 불가 (2026.9.10 시행), 정관 변경 필요", "basis": "개정상법 §542조의7", "urgency": "high", "isNew": true },
+      { "id": 6, "requirement": "사외이사후보추천위원회", "detail": "독립이사 후보 추천을 위한 위원회 설치 (독립이사 과반수 구성)", "basis": "상법 §542조의8 ④", "urgency": "medium" },
+      { "id": 7, "requirement": "내부회계관리제도 감사", "detail": "별도 및 연결기준 내부회계관리제도에 대한 외부감사인 감사 (검토→감사 격상)", "basis": "외감법 시행령", "urgency": "medium" },
+      { "id": 8, "requirement": "기업지배구조보고서 공시", "detail": "이사회 구성·운영, 배당, 감사 등 핵심정보 매년 의무 공시", "basis": "유가증권시장 공시규정", "urgency": "medium", "isNew": true },
+      { "id": 9, "requirement": "합산 3%룰 강화", "detail": "감사위원 선·해임 시 최대주주 등 의결권 합산 3% 제한 확대 (2026.7.23 시행)", "basis": "개정상법 §542조의12 ③", "urgency": "medium", "isNew": true }
+    ]
+  },
+  "monthlyCashPlan": {
+    "title": "FY2026E 월별 자금계획표",
+    "months": ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+    "beginningCash": [628.1, 751.6, 770.3, 814.6, 1198.2, 1266.9, 1279.5, 1282.7, 1383.5, 1472.0, 1473.7, 1492.4],
+    "operatingCF": [5.4, 18.7, 12.7, 356.0, 18.7, 12.7, 3.2, 18.7, 11.9, 4.6, 18.7, 10.4],
+    "holdingDiv": [-2.2, 5.2, -0.8, 346.5, 5.2, -0.8, -4.6, 5.2, -0.8, -4.9, 5.2, -0.8],
+    "logistics": [10.9, 13.5, 13.5, 13.5, 13.5, 13.5, 13.5, 13.5, 13.5, 13.5, 13.5, 13.5],
+    "otherOp": [-3.2, 0.0, 0.0, -4.0, 0.0, 0.0, -5.7, 0.0, -0.7, -4.0, 0.0, -2.2],
+    "financialProducts": [118.2, 0.0, 7.4, 0.0, 50.0, 0.0, 0.0, 85.0, 76.6, 0.0, 0.0, 0.0],
+    "buildingSale": [0.0, 0.0, 24.2, 218.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+    "dividend": [0.0, 0.0, 0.0, -195.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+    "tax": [0.0, 0.0, 0.0, 4.8, 0.0, 0.0, 0.0, -2.9, 0.0, -2.9, 0.0, 0.0],
+    "endingCash": [751.6, 770.3, 814.6, 1198.2, 1266.9, 1279.5, 1282.7, 1383.5, 1472.0, 1473.7, 1492.4, 1502.8],
+    "annual": {
+      "beginningCash": 628.1,
+      "operatingCF": 491.5,
+      "holdingDiv": 352.1,
+      "logistics": 159.2,
+      "otherOp": -19.8,
+      "financialProducts": 337.2,
+      "buildingSale": 242.3,
+      "dividend": -195.3,
+      "tax": -0.9,
+      "endingCash": 1502.8
+    }
+  }
+}
