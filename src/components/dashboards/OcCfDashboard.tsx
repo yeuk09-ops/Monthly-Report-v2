@@ -434,7 +434,7 @@ export default function OcCfDashboard() {
                 <TableHead className="text-white font-medium text-right">24년 연간</TableHead>
                 <TableHead className="text-white font-medium text-right">25년 계(실적)</TableHead>
                 <TableHead className="text-white font-medium text-right bg-blue-600/30">26.1월(실적)</TableHead>
-                <TableHead className="text-white font-medium text-right bg-slate-500/30">26.2월(e)</TableHead>
+                <TableHead className="text-white font-medium text-right bg-blue-600/30">26.2월(실적)</TableHead>
                 <TableHead className="text-white font-medium text-right bg-slate-500/30">26.3월(e)</TableHead>
                 <TableHead className="text-white font-medium text-right bg-slate-500/30">26.4월(e)</TableHead>
                 <TableHead className="text-white font-medium text-right bg-slate-500/30">26.5월(e)</TableHead>
@@ -450,7 +450,7 @@ export default function OcCfDashboard() {
                 <TableCell className="text-right">{fmt(data.beginningCash.y24Annual)}</TableCell>
                 <TableCell className="text-right">{fmt(data.beginningCash.y25Total)}</TableCell>
                 <TableCell className="text-right bg-blue-50/80">{fmt(data.beginningCash.y26Monthly?.['1'])}</TableCell>
-                <TableCell className="text-right bg-slate-50/50">{fmt(data.beginningCash.y26Monthly?.['2'])}</TableCell>
+                <TableCell className="text-right bg-blue-50/80">{fmt(data.beginningCash.y26Monthly?.['2'])}</TableCell>
                 <TableCell className="text-right bg-slate-50/50">{fmt(data.beginningCash.y26Monthly?.['3'])}</TableCell>
                 <TableCell className="text-right bg-slate-50/50">{fmt(data.beginningCash.y26Monthly?.['4'])}</TableCell>
                 <TableCell className="text-right bg-slate-50/50">{fmt(data.beginningCash.y26Monthly?.['5'])}</TableCell>
@@ -467,7 +467,7 @@ export default function OcCfDashboard() {
                 <TableCell className="text-right text-emerald-700">{fmt(data.operating.total.y24Annual)}</TableCell>
                 <TableCell className="text-right text-emerald-700">{fmt(data.operating.total.y25Total)}</TableCell>
                 <TableCell className="text-right bg-blue-50/50 text-emerald-700">{fmt(data.operating.total.y26Monthly?.['1'])}</TableCell>
-                <TableCell className="text-right bg-slate-50/50 text-emerald-700">{fmt(data.operating.total.y26Monthly?.['2'])}</TableCell>
+                <TableCell className="text-right bg-blue-50/50 text-emerald-700">{fmt(data.operating.total.y26Monthly?.['2'])}</TableCell>
                 <TableCell className="text-right bg-slate-50/50 text-emerald-700">{fmt(data.operating.total.y26Monthly?.['3'])}</TableCell>
                 <TableCell className="text-right bg-slate-50/50 text-emerald-700">{fmt(data.operating.total.y26Monthly?.['4'])}</TableCell>
                 <TableCell className="text-right bg-slate-50/50 text-emerald-700">{fmt(data.operating.total.y26Monthly?.['5'])}</TableCell>
@@ -488,7 +488,7 @@ export default function OcCfDashboard() {
                 <TableCell className="text-right text-red-700">{fmt(data.investment.total.y24Annual)}</TableCell>
                 <TableCell className="text-right text-red-700">{fmt(data.investment.total.y25Total)}</TableCell>
                 <TableCell className="text-right bg-blue-50/50 text-red-700">{fmt(data.investment.total.y26Monthly?.['1'])}</TableCell>
-                <TableCell className="text-right bg-slate-50/50 text-red-700">{fmt(data.investment.total.y26Monthly?.['2'])}</TableCell>
+                <TableCell className="text-right bg-blue-50/50 text-red-700">{fmt(data.investment.total.y26Monthly?.['2'])}</TableCell>
                 <TableCell className="text-right bg-slate-50/50 text-red-700">{fmt(data.investment.total.y26Monthly?.['3'])}</TableCell>
                 <TableCell className="text-right bg-slate-50/50 text-red-700">{fmt(data.investment.total.y26Monthly?.['4'])}</TableCell>
                 <TableCell className="text-right bg-slate-50/50 text-red-700">{fmt(data.investment.total.y26Monthly?.['5'])}</TableCell>
@@ -502,7 +502,7 @@ export default function OcCfDashboard() {
                   <TableCell className="text-right text-sm">{fmt(item.y24Annual)}</TableCell>
                   <TableCell className="text-right text-sm">{fmt(item.y25Total)}</TableCell>
                   <TableCell className="text-right text-sm bg-blue-50/30">{fmt(item.y26Monthly?.['1'])}</TableCell>
-                  <TableCell className="text-right text-sm bg-slate-50/30">{fmt(item.y26Monthly?.['2'])}</TableCell>
+                  <TableCell className="text-right text-sm bg-blue-50/30">{fmt(item.y26Monthly?.['2'])}</TableCell>
                   <TableCell className="text-right text-sm bg-slate-50/30">{fmt(item.y26Monthly?.['3'])}</TableCell>
                   <TableCell className="text-right text-sm bg-slate-50/30">{fmt(item.y26Monthly?.['4'])}</TableCell>
                   <TableCell className="text-right text-sm bg-slate-50/30">{fmt(item.y26Monthly?.['5'])}</TableCell>
@@ -524,7 +524,7 @@ export default function OcCfDashboard() {
                 <TableCell className="text-right text-amber-700">{fmt(data.financing.total.y24Annual)}</TableCell>
                 <TableCell className="text-right text-amber-700">{fmt(data.financing.total.y25Total)}</TableCell>
                 <TableCell className="text-right bg-blue-50/50 text-amber-700">{fmt(data.financing.total.y26Monthly?.['1'])}</TableCell>
-                <TableCell className="text-right bg-slate-50/50 text-amber-700">{fmt(data.financing.total.y26Monthly?.['2'])}</TableCell>
+                <TableCell className="text-right bg-blue-50/50 text-amber-700">{fmt(data.financing.total.y26Monthly?.['2'])}</TableCell>
                 <TableCell className="text-right bg-slate-50/50 text-amber-700">{fmt(data.financing.total.y26Monthly?.['3'])}</TableCell>
                 <TableCell className="text-right bg-slate-50/50 text-amber-700">{fmt(data.financing.total.y26Monthly?.['4'])}</TableCell>
                 <TableCell className="text-right bg-slate-50/50 text-amber-700">{fmt(data.financing.total.y26Monthly?.['5'])}</TableCell>
@@ -538,7 +538,7 @@ export default function OcCfDashboard() {
                   <TableCell className="text-right text-sm">{fmt(item.y24Annual)}</TableCell>
                   <TableCell className="text-right text-sm">{fmt(item.y25Total)}</TableCell>
                   <TableCell className="text-right text-sm bg-blue-50/30">{fmt(item.y26Monthly?.['1'])}</TableCell>
-                  <TableCell className="text-right text-sm bg-slate-50/30">{fmt(item.y26Monthly?.['2'])}</TableCell>
+                  <TableCell className="text-right text-sm bg-blue-50/30">{fmt(item.y26Monthly?.['2'])}</TableCell>
                   <TableCell className="text-right text-sm bg-slate-50/30">{fmt(item.y26Monthly?.['3'])}</TableCell>
                   <TableCell className="text-right text-sm bg-slate-50/30">{fmt(item.y26Monthly?.['4'])}</TableCell>
                   <TableCell className="text-right text-sm bg-slate-50/30">{fmt(item.y26Monthly?.['5'])}</TableCell>
@@ -554,7 +554,7 @@ export default function OcCfDashboard() {
                 <TableCell className="text-right font-bold text-violet-800">{fmt(data.endingCash.y24Annual)}</TableCell>
                 <TableCell className="text-right font-bold text-violet-800">{fmt(data.endingCash.y25Total)}</TableCell>
                 <TableCell className="text-right font-bold bg-blue-50/50 text-violet-800">{fmt(data.endingCash.y26Monthly?.['1'])}</TableCell>
-                <TableCell className="text-right font-bold bg-slate-50/50 text-violet-800">{fmt(data.endingCash.y26Monthly?.['2'])}</TableCell>
+                <TableCell className="text-right font-bold bg-blue-50/50 text-violet-800">{fmt(data.endingCash.y26Monthly?.['2'])}</TableCell>
                 <TableCell className="text-right font-bold bg-slate-50/50 text-violet-800">{fmt(data.endingCash.y26Monthly?.['3'])}</TableCell>
                 <TableCell className="text-right font-bold bg-slate-50/50 text-violet-800">{fmt(data.endingCash.y26Monthly?.['4'])}</TableCell>
                 <TableCell className="text-right font-bold bg-slate-50/50 text-violet-800">{fmt(data.endingCash.y26Monthly?.['5'])}</TableCell>
@@ -570,7 +570,7 @@ export default function OcCfDashboard() {
                   <TableCell className="text-right text-sm">{fmt(data.ocBorrowingBalance.y24Annual)}</TableCell>
                   <TableCell className="text-right text-sm">{fmt(data.ocBorrowingBalance.y25Total)}</TableCell>
                   <TableCell className="text-right text-sm bg-blue-50/30">{fmt(data.ocBorrowingBalance.y26Monthly?.['1'])}</TableCell>
-                  <TableCell className="text-right text-sm bg-slate-50/30">{fmt(data.ocBorrowingBalance.y26Monthly?.['2'])}</TableCell>
+                  <TableCell className="text-right text-sm bg-blue-50/30">{fmt(data.ocBorrowingBalance.y26Monthly?.['2'])}</TableCell>
                   <TableCell className="text-right text-sm bg-slate-50/30">{fmt(data.ocBorrowingBalance.y26Monthly?.['3'])}</TableCell>
                   <TableCell className="text-right text-sm bg-slate-50/30">{fmt(data.ocBorrowingBalance.y26Monthly?.['4'])}</TableCell>
                   <TableCell className="text-right text-sm bg-slate-50/30">{fmt(data.ocBorrowingBalance.y26Monthly?.['5'])}</TableCell>

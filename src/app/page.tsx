@@ -3,8 +3,6 @@
 import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import HcDashboard from '@/components/dashboards/HcDashboard';
-import OcBsDashboard from '@/components/dashboards/OcBsDashboard';
-import OcCfDashboard from '@/components/dashboards/OcCfDashboard';
 
 type TabKey = 'oc-bs' | 'oc-cf' | 'hc';
 
@@ -13,6 +11,12 @@ const tabs: { key: TabKey; label: string; sublabel: string }[] = [
   { key: 'oc-cf', label: 'OC CF', sublabel: 'F&F 자금계획' },
   { key: 'hc',    label: 'HC',    sublabel: 'F&F Holdings BS/CF' },
 ];
+
+// 외부 대시보드 URL (BS: 3001, CF: 3002)
+const EXTERNAL_DASHBOARDS: Record<string, string> = {
+  'oc-bs': 'http://localhost:3001/balance-sheet',
+  'oc-cf': 'http://localhost:3002',
+};
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState<TabKey>('oc-bs');
@@ -24,11 +28,11 @@ export default function Page() {
         <div className="max-w-[1400px] mx-auto">
           <div className="flex items-center justify-between flex-wrap gap-3 mb-4">
             <div>
-              <h1 className="text-2xl font-bold text-white tracking-tight">FNF 26.1월 BS/CF 리포트</h1>
+              <h1 className="text-2xl font-bold text-white tracking-tight">FNF 26.2월 BS/CF 리포트</h1>
               <p className="text-slate-300 text-sm mt-1">F&F · F&F Holdings | 재무상태표 · 자금계획</p>
             </div>
             <div className="flex items-center gap-2">
-              <Badge className="bg-amber-500/20 text-amber-200 border-amber-400/30 text-xs px-3 py-1">26년 1월</Badge>
+              <Badge className="bg-amber-500/20 text-amber-200 border-amber-400/30 text-xs px-3 py-1">26년 2월</Badge>
               <Badge className="bg-blue-500/20 text-blue-200 border-blue-400/30 text-xs px-3 py-1">목표: 26년 12월</Badge>
             </div>
           </div>
@@ -59,8 +63,16 @@ export default function Page() {
 
       {/* ===== TAB CONTENT ===== */}
       <div className="bg-white/50 min-h-[calc(100vh-200px)]">
-        {activeTab === 'oc-bs' && <OcBsDashboard />}
-        {activeTab === 'oc-cf' && <OcCfDashboard />}
+        {/* OC BS / OC CF: 기존 대시보드를 iframe으로 임베드 */}
+        {(activeTab === 'oc-bs' || activeTab === 'oc-cf') && (
+          <iframe
+            key={activeTab}
+            src={EXTERNAL_DASHBOARDS[activeTab]}
+            className="w-full border-0"
+            style={{ height: 'calc(100vh - 140px)' }}
+            title={activeTab === 'oc-bs' ? '26.2월 BS 대시보드' : '26.2월 CF 대시보드'}
+          />
+        )}
         {activeTab === 'hc' && <HcDashboard />}
       </div>
     </div>

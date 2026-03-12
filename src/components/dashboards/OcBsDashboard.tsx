@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo, Fragment } from 'react';
-import rawData from '@/data/oc-bs-2026-01.json';
+import rawData from '@/data/oc-bs-2026-02.json';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
@@ -38,7 +38,7 @@ export default function OcBsDashboard() {
     const prevAnnualizedRevenue = 17026;  // 25년 실적
     const prevAnnualizedCogs = 6158;  // 25년 실적
 
-    // 26년 1월 기준 평균 (current + previousMonth) / 2
+    // 26년 2월 기준 평균 (current + previousMonth) / 2
     const avgReceivables = d.receivables.previousMonth !== undefined
       ? (d.receivables.current + d.receivables.previousMonth) / 2
       : d.receivables.current;
@@ -49,10 +49,10 @@ export default function OcBsDashboard() {
       ? (d.payables.current + d.payables.previousMonth) / 2
       : d.payables.current;
 
-    // 25년 1월 기준 평균 (전년 데이터)
-    const avgReceivablesPrev = d.receivables.previousYear || 1970;
-    const avgInventoryPrev = d.inventory.previousYear || 2101;
-    const avgPayablesPrev = d.payables.previousYear || 821;
+    // 25년 2월 기준 평균 (전년 데이터)
+    const avgReceivablesPrev = d.receivables.previousYear || 1678;
+    const avgInventoryPrev = d.inventory.previousYear || 2309;
+    const avgPayablesPrev = d.payables.previousYear || 931;
 
     // 회전율 계산 (연환산 기준)
     const receivablesTurnover = {
@@ -115,7 +115,7 @@ export default function OcBsDashboard() {
   };
 
   const renderSectionHeader = (
-    sectionKey: string, title: string, jan25: number | undefined, dec25: number | undefined, jan26: number | undefined,
+    sectionKey: string, title: string, feb25: number | undefined, jan26: number | undefined, feb26: number | undefined,
     momChange: number | undefined, momChangePercent: number | undefined, yoyChange: number | undefined, yoyChangePercent: number | undefined, bgClass: string
   ) => (
     <TableRow className={`${bgClass} cursor-pointer hover:opacity-90`} onClick={() => toggleSection(sectionKey)}>
@@ -123,9 +123,9 @@ export default function OcBsDashboard() {
         {expandedSections[sectionKey] ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
         {title}
       </TableCell>
-      <TableCell className="text-right font-semibold">{formatNumber(jan25)}</TableCell>
-      <TableCell className="text-right font-semibold">{formatNumber(dec25)}</TableCell>
-      <TableCell className="text-right font-semibold bg-yellow-50/50">{formatNumber(jan26)}</TableCell>
+      <TableCell className="text-right font-semibold">{formatNumber(feb25)}</TableCell>
+      <TableCell className="text-right font-semibold">{formatNumber(jan26)}</TableCell>
+      <TableCell className="text-right font-semibold bg-yellow-50/50">{formatNumber(feb26)}</TableCell>
       <TableCell className={`text-right font-semibold ${getChangeColor(momChange)}`}>
         {momChange !== undefined && momChange > 0 ? '+' : ''}{formatNumber(momChange)}
       </TableCell>
@@ -145,9 +145,9 @@ export default function OcBsDashboard() {
             <TableHeader>
               <TableRow className="bg-gradient-to-r from-slate-700 to-slate-600">
                 <TableHead className="text-white w-[200px]">계정과목</TableHead>
-                <TableHead className="text-white text-right w-[110px]">25년 1월</TableHead>
-                <TableHead className="text-white text-right w-[110px]">25년 12월</TableHead>
+                <TableHead className="text-white text-right w-[110px]">25년 2월</TableHead>
                 <TableHead className="text-white text-right w-[110px]">26년 1월</TableHead>
+                <TableHead className="text-white text-right w-[110px]">26년 2월</TableHead>
                 <TableHead className="text-white text-right w-[100px]">월간증감</TableHead>
                 <TableHead className="text-white text-right w-[140px]">연간증감 (YoY)</TableHead>
               </TableRow>
@@ -157,9 +157,9 @@ export default function OcBsDashboard() {
               {balanceSheet.totals && balanceSheet.totals.length > 0 && renderSectionHeader(
                 'asset',
                 '자산총계',
-                balanceSheet.totals[0].jan25,
-                balanceSheet.totals[0].dec25,
+                balanceSheet.totals[0].feb25,
                 balanceSheet.totals[0].jan26,
+                balanceSheet.totals[0].feb26,
                 balanceSheet.totals[0].momChange,
                 balanceSheet.totals[0].momChangePercent,
                 balanceSheet.totals[0].yoyChange,
@@ -172,9 +172,9 @@ export default function OcBsDashboard() {
                 return (
                   <TableRow key={idx} className={item.isSubItem ? 'text-gray-600' : ''}>
                     <TableCell className={item.isSubItem ? 'pl-10 text-sm' : 'pl-8'}>{item.label}</TableCell>
-                    <TableCell className="text-right">{formatNumber(item.jan25)}</TableCell>
-                    <TableCell className="text-right">{formatNumber(item.dec25)}</TableCell>
-                    <TableCell className={`text-right ${item.highlight ? 'bg-yellow-50' : ''}`}>{formatNumber(item.jan26)}</TableCell>
+                    <TableCell className="text-right">{formatNumber(item.feb25)}</TableCell>
+                    <TableCell className="text-right">{formatNumber(item.jan26)}</TableCell>
+                    <TableCell className={`text-right ${item.highlight ? 'bg-yellow-50' : ''}`}>{formatNumber(item.feb26)}</TableCell>
                     <TableCell className={`text-right ${getChangeColor(item.momChange)}`}>
                       {item.momChange !== undefined && item.momChange > 0 ? '+' : ''}{formatNumber(item.momChange)}
                     </TableCell>
@@ -189,9 +189,9 @@ export default function OcBsDashboard() {
               {balanceSheet.totals && balanceSheet.totals.length > 1 && renderSectionHeader(
                 'liability',
                 '부채총계',
-                balanceSheet.totals[1].jan25,
-                balanceSheet.totals[1].dec25,
+                balanceSheet.totals[1].feb25,
                 balanceSheet.totals[1].jan26,
+                balanceSheet.totals[1].feb26,
                 balanceSheet.totals[1].momChange,
                 balanceSheet.totals[1].momChangePercent,
                 balanceSheet.totals[1].yoyChange,
@@ -204,9 +204,9 @@ export default function OcBsDashboard() {
                 return (
                   <TableRow key={idx} className={item.isSubItem ? 'text-gray-600' : ''}>
                     <TableCell className={item.isSubItem ? 'pl-10 text-sm' : 'pl-8'}>{item.label}</TableCell>
-                    <TableCell className="text-right">{formatNumber(item.jan25)}</TableCell>
-                    <TableCell className="text-right">{formatNumber(item.dec25)}</TableCell>
+                    <TableCell className="text-right">{formatNumber(item.feb25)}</TableCell>
                     <TableCell className="text-right">{formatNumber(item.jan26)}</TableCell>
+                    <TableCell className="text-right">{formatNumber(item.feb26)}</TableCell>
                     <TableCell className={`text-right ${getChangeColor(item.momChange, true)}`}>
                       {item.momChange !== undefined && item.momChange > 0 ? '+' : ''}{formatNumber(item.momChange)}
                     </TableCell>
@@ -221,9 +221,9 @@ export default function OcBsDashboard() {
               {balanceSheet.totals && balanceSheet.totals.length > 2 && renderSectionHeader(
                 'equity',
                 '자본총계',
-                balanceSheet.totals[2].jan25,
-                balanceSheet.totals[2].dec25,
+                balanceSheet.totals[2].feb25,
                 balanceSheet.totals[2].jan26,
+                balanceSheet.totals[2].feb26,
                 balanceSheet.totals[2].momChange,
                 balanceSheet.totals[2].momChangePercent,
                 balanceSheet.totals[2].yoyChange,
@@ -236,9 +236,9 @@ export default function OcBsDashboard() {
                 return (
                   <TableRow key={idx} className={item.isSubItem ? 'text-gray-600' : ''}>
                     <TableCell className={item.isSubItem ? 'pl-10 text-sm' : 'pl-8'}>{item.label}</TableCell>
-                    <TableCell className="text-right">{formatNumber(item.jan25)}</TableCell>
-                    <TableCell className="text-right">{formatNumber(item.dec25)}</TableCell>
+                    <TableCell className="text-right">{formatNumber(item.feb25)}</TableCell>
                     <TableCell className="text-right">{formatNumber(item.jan26)}</TableCell>
+                    <TableCell className="text-right">{formatNumber(item.feb26)}</TableCell>
                     <TableCell className={`text-right ${getChangeColor(item.momChange)}`}>
                       {item.momChange !== undefined && item.momChange > 0 ? '+' : ''}{formatNumber(item.momChange)}
                     </TableCell>
@@ -262,8 +262,8 @@ export default function OcBsDashboard() {
             <TableHeader>
               <TableRow className="bg-gradient-to-r from-slate-700 to-slate-600">
                 <TableHead className="text-white w-[200px]">구분</TableHead>
-                <TableHead className="text-white text-right w-[140px]">25년 12월</TableHead>
                 <TableHead className="text-white text-right w-[140px]">26년 1월</TableHead>
+                <TableHead className="text-white text-right w-[140px]">26년 2월</TableHead>
                 <TableHead className="text-white text-right w-[120px]">증감</TableHead>
                 <TableHead className="text-white text-right w-[80px]">증감률</TableHead>
               </TableRow>
@@ -287,8 +287,8 @@ export default function OcBsDashboard() {
               {expandedSections.arDetail && workingCapital.ar && workingCapital.ar.map((item: any, idx) => (
                 <TableRow key={idx} className={item.warning ? 'bg-orange-50' : 'bg-gray-50'}>
                   <TableCell className={`pl-10 ${item.warning ? 'text-orange-700 font-medium' : ''}`}>{item.label}</TableCell>
-                  <TableCell className="text-right">{formatNumber(item.dec25)}</TableCell>
                   <TableCell className="text-right">{formatNumber(item.jan26)}</TableCell>
+                  <TableCell className="text-right">{formatNumber(item.feb26)}</TableCell>
                   <TableCell className={`text-right ${getChangeColor(item.change)}`}>{item.change !== undefined && item.change > 0 ? '+' : ''}{formatNumber(item.change)}</TableCell>
                   <TableCell className={`text-right ${getChangeColor(item.changePercent)}`}>{item.changePercent !== undefined && item.changePercent > 0 ? '+' : ''}{item.changePercent !== undefined ? item.changePercent.toFixed(1) : '-'}%</TableCell>
                 </TableRow>
@@ -324,8 +324,8 @@ export default function OcBsDashboard() {
                   {brand.items.map((item, subIdx) => (
                     <TableRow key={subIdx} className="hover:bg-gray-50">
                       <TableCell className="pl-12 text-gray-600">{item.label}</TableCell>
-                      <TableCell className="text-right">{formatNumber(item.dec25)}</TableCell>
                       <TableCell className="text-right">{formatNumber(item.jan26)}</TableCell>
+                      <TableCell className="text-right">{formatNumber(item.feb26)}</TableCell>
                       <TableCell className={`text-right ${getChangeColor(item.change)}`}>{item.change !== undefined && item.change > 0 ? '+' : ''}{item.change}</TableCell>
                       <TableCell className={`text-right ${getChangeColor(item.changePercent)}`}>{item.changePercent !== undefined && item.changePercent > 0 ? '+' : ''}{item.changePercent !== undefined ? item.changePercent.toFixed(1) : '-'}%</TableCell>
                     </TableRow>
@@ -393,8 +393,8 @@ export default function OcBsDashboard() {
             <TableHeader>
               <TableRow className="bg-orange-100">
                 <TableHead>지표</TableHead>
-                <TableHead className="text-right">25년 1월</TableHead>
-                <TableHead className="text-right">26년 1월</TableHead>
+                <TableHead className="text-right">25년 2월</TableHead>
+                <TableHead className="text-right">26년 2월</TableHead>
                 <TableHead className="text-right">증감</TableHead>
                 <TableHead className="text-center">평가</TableHead>
               </TableRow>
@@ -444,7 +444,7 @@ export default function OcBsDashboard() {
       {/* 여신기준 검증 */}
       <Card className="bg-gradient-to-r from-amber-50 to-orange-100 border-2 border-orange-400">
         <CardHeader>
-          <CardTitle className="text-lg text-orange-800">여신기준 검증 (11월~1월 매출 대비 채권)</CardTitle>
+          <CardTitle className="text-lg text-orange-800">여신기준 검증 (12월~2월 매출 대비 채권)</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-amber-700 mb-4">※ 통상 여신기간 1~2개월 기준으로 채권 잔액 적정성 검증</p>
@@ -453,10 +453,10 @@ export default function OcBsDashboard() {
               <TableHeader>
                 <TableRow className="bg-orange-500 text-white">
                   <TableHead className="text-white">구분</TableHead>
-                  <TableHead className="text-white text-right">11월</TableHead>
                   <TableHead className="text-white text-right">12월</TableHead>
                   <TableHead className="text-white text-right">1월</TableHead>
-                  <TableHead className="text-white text-right">1월말 채권</TableHead>
+                  <TableHead className="text-white text-right">2월</TableHead>
+                  <TableHead className="text-white text-right">2월말 채권</TableHead>
                   <TableHead className="text-white text-right">채권/매출</TableHead>
                   <TableHead className="text-white text-right">월수 환산</TableHead>
                   <TableHead className="text-white text-right">전년 월수</TableHead>
@@ -493,13 +493,13 @@ export default function OcBsDashboard() {
           <CardContent className="pt-4">
             <h3 className="text-sm font-medium text-gray-500 mb-1">부채비율</h3>
             <p className="text-2xl font-bold text-slate-800">
-              {balanceSheet.totals[1].jan26 && balanceSheet.totals[2].jan26
-                ? ((balanceSheet.totals[1].jan26 / balanceSheet.totals[2].jan26) * 100).toFixed(1) + '%'
+              {balanceSheet.totals[1].feb26 && balanceSheet.totals[2].feb26
+                ? ((balanceSheet.totals[1].feb26 / balanceSheet.totals[2].feb26) * 100).toFixed(1) + '%'
                 : '-'}
             </p>
             <p className="text-sm text-emerald-600">
-              {balanceSheet.totals[1].dec25 && balanceSheet.totals[2].dec25 && balanceSheet.totals[1].jan26 && balanceSheet.totals[2].jan26
-                ? `전월 ${((balanceSheet.totals[1].dec25 / balanceSheet.totals[2].dec25) * 100).toFixed(1)}% → △${(((balanceSheet.totals[1].dec25 / balanceSheet.totals[2].dec25) * 100) - ((balanceSheet.totals[1].jan26 / balanceSheet.totals[2].jan26) * 100)).toFixed(1)}%p 개선`
+              {balanceSheet.totals[1].jan26 && balanceSheet.totals[2].jan26 && balanceSheet.totals[1].feb26 && balanceSheet.totals[2].feb26
+                ? `전월 ${((balanceSheet.totals[1].jan26 / balanceSheet.totals[2].jan26) * 100).toFixed(1)}% → △${(((balanceSheet.totals[1].jan26 / balanceSheet.totals[2].jan26) * 100) - ((balanceSheet.totals[1].feb26 / balanceSheet.totals[2].feb26) * 100)).toFixed(1)}%p 개선`
                 : '-'}
             </p>
           </CardContent>
@@ -508,13 +508,13 @@ export default function OcBsDashboard() {
           <CardContent className="pt-4">
             <h3 className="text-sm font-medium text-gray-500 mb-1">자기자본비율</h3>
             <p className="text-2xl font-bold text-slate-800">
-              {balanceSheet.totals[2].jan26 && balanceSheet.totals[0].jan26
-                ? ((balanceSheet.totals[2].jan26 / balanceSheet.totals[0].jan26) * 100).toFixed(1) + '%'
+              {balanceSheet.totals[2].feb26 && balanceSheet.totals[0].feb26
+                ? ((balanceSheet.totals[2].feb26 / balanceSheet.totals[0].feb26) * 100).toFixed(1) + '%'
                 : '-'}
             </p>
             <p className="text-sm text-emerald-600">
-              {balanceSheet.totals[2].dec25 && balanceSheet.totals[0].dec25 && balanceSheet.totals[2].jan26 && balanceSheet.totals[0].jan26
-                ? `전월 ${((balanceSheet.totals[2].dec25 / balanceSheet.totals[0].dec25) * 100).toFixed(1)}% → +${(((balanceSheet.totals[2].jan26 / balanceSheet.totals[0].jan26) * 100) - ((balanceSheet.totals[2].dec25 / balanceSheet.totals[0].dec25) * 100)).toFixed(1)}%p 개선`
+              {balanceSheet.totals[2].jan26 && balanceSheet.totals[0].jan26 && balanceSheet.totals[2].feb26 && balanceSheet.totals[0].feb26
+                ? `전월 ${((balanceSheet.totals[2].jan26 / balanceSheet.totals[0].jan26) * 100).toFixed(1)}% → +${(((balanceSheet.totals[2].feb26 / balanceSheet.totals[0].feb26) * 100) - ((balanceSheet.totals[2].jan26 / balanceSheet.totals[0].jan26) * 100)).toFixed(1)}%p 개선`
                 : '-'}
             </p>
           </CardContent>
@@ -522,7 +522,7 @@ export default function OcBsDashboard() {
         <Card className="border-l-4 border-l-orange-500">
           <CardContent className="pt-4">
             <h3 className="text-sm font-medium text-gray-500 mb-1">순차입금비율</h3>
-            <p className="text-2xl font-bold text-slate-800">△14.8%</p>
+            <p className="text-2xl font-bold text-slate-800">△21.9%</p>
             <p className="text-sm text-emerald-600">무차입 경영 유지 (현금 &gt; 차입금)</p>
           </CardContent>
         </Card>

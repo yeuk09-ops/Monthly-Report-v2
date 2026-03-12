@@ -115,7 +115,7 @@ export default function HcDashboard() {
               <div className="text-center">
                 <div className="text-lg font-black text-red-700 tracking-tight">26년 자산총계 2조원 초과 예상</div>
                 <div className="text-xs text-gray-600 mt-0.5 font-mono">
-                  {fmt(at.current.jan26)}억 <ArrowRight className="w-3 h-3 inline text-gray-400" /> <span className="text-red-600 font-bold">{fmt(at.current.dec26e)}억</span>
+                  {fmt(at.current.feb26)}억 <ArrowRight className="w-3 h-3 inline text-gray-400" /> <span className="text-red-600 font-bold">{fmt(at.current.dec26e)}억</span>
                   <span className="text-gray-400 mx-1">|</span>
                   기준 {(at.threshold / 10000).toFixed(0)}조원 대비 <span className="text-red-600 font-bold">+{fmt(at.current.dec26e - at.threshold)}억 초과</span>
                 </div>
@@ -212,10 +212,10 @@ export default function HcDashboard() {
                   <TableRow className="bg-gradient-to-r from-slate-700 to-slate-600 hover:from-slate-700 hover:to-slate-600">
                     <TableHead className="text-white text-xs w-[170px] pl-4">계정과목</TableHead>
                     <TableHead className="text-white text-xs text-right w-[85px]">25.12</TableHead>
-                    <TableHead className="text-amber-200 text-xs text-right w-[85px] font-bold">26.01</TableHead>
-                    <TableHead className="text-white text-xs text-right w-[70px]">월간증감</TableHead>
+                    <TableHead className="text-amber-200 text-xs text-right w-[85px] font-bold">26.02</TableHead>
+                    <TableHead className="text-white text-xs text-right w-[70px]">26년증감</TableHead>
                     <TableHead className="text-blue-200 text-xs text-right w-[85px] font-bold">26.12E</TableHead>
-                    <TableHead className="text-white text-xs text-right w-[70px] pr-4">YoY</TableHead>
+                    <TableHead className="text-white text-xs text-right w-[70px] pr-4">연간증감</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -224,14 +224,14 @@ export default function HcDashboard() {
                   <BSSection label="자본" color="emerald" items={data.balanceSheet.equity} isExpanded={expanded['equity'] || showAll} onToggle={() => toggle('equity')} isEquity />
                   <TableRow className="bg-slate-50"><TableCell colSpan={6} className="py-0.5" /></TableRow>
                   {data.balanceSheet.totals.map((item, i) => {
-                    const mom = calcChange(item.jan26, item.dec25);
+                    const mom = calcChange(item.feb26, item.dec25);
                     const yoy = calcChange(item.dec26e, item.dec25);
                     const neg = item.label === '부채총계';
                     return (
                       <TableRow key={i} className="bg-slate-50 font-bold text-sm border-t-2 border-slate-300">
                         <TableCell className="pl-6 font-bold">{item.label}</TableCell>
                         <TableCell className="text-right font-mono text-gray-500">{fmt(item.dec25)}</TableCell>
-                        <TableCell className="text-right font-mono font-bold bg-amber-50/50">{fmt(item.jan26)}</TableCell>
+                        <TableCell className="text-right font-mono font-bold bg-amber-50/50">{fmt(item.feb26)}</TableCell>
                         <TableCell className={`text-right font-mono ${getChangeColor(mom.diff, neg)}`}>{fmt(mom.diff)}</TableCell>
                         <TableCell className="text-right font-mono font-bold text-blue-700 bg-blue-50/30">{fmt(item.dec26e)}</TableCell>
                         <TableCell className={`text-right font-mono pr-4 ${getChangeColor(yoy.diff, neg)}`}>{fmtPct(yoy.pct)}</TableCell>
@@ -275,7 +275,7 @@ export default function HcDashboard() {
                 <thead><tr className="text-gray-400 border-b">
                   <th className="text-left py-1 font-medium">지표</th>
                   <th className="text-right py-1 font-medium">25.12</th>
-                  <th className="text-right py-1 font-medium text-amber-600">26.01</th>
+                  <th className="text-right py-1 font-medium text-amber-600">26.02</th>
                   <th className="text-right py-1 font-medium text-blue-600">26.12E</th>
                 </tr></thead>
                 <tbody>
@@ -283,7 +283,7 @@ export default function HcDashboard() {
                     <tr key={i} className="border-b border-gray-50">
                       <td className="py-1.5 text-gray-600">{r.label}</td>
                       <td className="text-right py-1.5 text-gray-500">{r.dec25.toFixed(1)}{r.unit}</td>
-                      <td className="text-right py-1.5 font-semibold">{r.jan26.toFixed(1)}{r.unit}</td>
+                      <td className="text-right py-1.5 font-semibold">{r.feb26.toFixed(1)}{r.unit}</td>
                       <td className="text-right py-1.5 font-semibold text-blue-700">{r.dec26e.toFixed(1)}{r.unit}</td>
                     </tr>
                   ))}
@@ -310,13 +310,13 @@ export default function HcDashboard() {
           {/* Progress Bar */}
           <div className="mb-4">
             <div className="flex justify-between text-xs text-gray-500 mb-1">
-              <span>26.01 실적: {fmt(at.current.jan26)}억 ({(at.current.jan26 / 10000 * 100).toFixed(1)}%)</span>
+              <span>26.02 실적: {fmt(at.current.feb26)}억 ({(at.current.feb26 / 10000 * 100).toFixed(1)}%)</span>
               <span className="text-amber-600 font-bold">2조원 기준</span>
               <span className="text-blue-600">26.12E: {fmt(at.current.dec26e)}억</span>
             </div>
             <div className="relative w-full h-4 bg-gray-100 rounded-full overflow-hidden">
               <div className="absolute h-full bg-gradient-to-r from-blue-400 to-blue-500 rounded-full transition-all"
-                style={{ width: `${(at.current.jan26 / at.current.dec26e) * 100}%` }} />
+                style={{ width: `${(at.current.feb26 / at.current.dec26e) * 100}%` }} />
               <div className="absolute h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full opacity-30"
                 style={{ width: '100%' }} />
               <div className="absolute h-full w-0.5 bg-red-500"
@@ -531,8 +531,8 @@ export default function HcDashboard() {
           <div className="flex items-center gap-2">
             <Calendar className="w-5 h-5 text-indigo-600" />
             <CardTitle className="text-sm font-bold">{mp.title}</CardTitle>
-            <Badge className="bg-amber-100 text-amber-800 text-[10px] ml-2">1월 실적</Badge>
-            <Badge className="bg-blue-100 text-blue-800 text-[10px]">2~12월 추정</Badge>
+            <Badge className="bg-amber-100 text-amber-800 text-[10px] ml-2">1~2월 실적</Badge>
+            <Badge className="bg-blue-100 text-blue-800 text-[10px]">3~12월 추정</Badge>
           </div>
         </CardHeader>
         <CardContent className="pb-4 pt-0">
@@ -542,7 +542,7 @@ export default function HcDashboard() {
                 <tr className="bg-gradient-to-r from-slate-700 to-slate-600 text-white">
                   <th className="text-left py-2 px-3 font-medium w-[130px] sticky left-0 bg-slate-700 z-10">구분</th>
                   {mp.months.map((m, i) => (
-                    <th key={i} className={`text-right py-2 px-2 font-medium ${i === 0 ? 'text-amber-200' : ''}`}>{m}</th>
+                    <th key={i} className={`text-right py-2 px-2 font-medium ${i <= 1 ? 'text-amber-200' : ''}`}>{m}</th>
                   ))}
                   <th className="text-right py-2 px-3 font-bold text-blue-200">연간</th>
                 </tr>
@@ -591,13 +591,13 @@ function BSSection({ label, color, items, isExpanded, onToggle, isNegativeGood, 
       </TableRow>
       {items.map((item: any, i: number) => {
         if (!(item.isHeader || item.isAlwaysVisible || isExpanded)) return null;
-        const mom = calcChange(item.jan26, item.dec25);
+        const mom = calcChange(item.feb26, item.dec25);
         const yoy = calcChange(item.dec26e, item.dec25);
         return (
           <TableRow key={i} className={`${item.isHeader ? `${c.hdr} font-semibold` : ''} ${item.highlight ? 'bg-yellow-50/50' : ''} ${item.isSubItem ? 'text-xs text-gray-600' : 'text-sm'}`}>
             <TableCell className={`${item.isSubItem ? 'pl-10' : item.isHeader ? `pl-6 font-semibold ${c.text}` : isEquity ? `pl-8 font-medium ${c.text}` : 'pl-8'}`}>{item.label}</TableCell>
             <TableCell className="text-right font-mono text-gray-500">{fmt(item.dec25)}</TableCell>
-            <TableCell className="text-right font-mono font-semibold bg-amber-50/30">{fmt(item.jan26)}</TableCell>
+            <TableCell className="text-right font-mono font-semibold bg-amber-50/30">{fmt(item.feb26)}</TableCell>
             <TableCell className={`text-right font-mono ${getChangeColor(mom.diff, isNegativeGood)}`}>{fmt(mom.diff)}</TableCell>
             <TableCell className="text-right font-mono font-semibold text-blue-700 bg-blue-50/20">{fmt(item.dec26e)}</TableCell>
             <TableCell className={`text-right font-mono pr-4 ${getChangeColor(yoy.diff, isNegativeGood)}`}>{item.dec25 !== 0 ? fmtPct(yoy.pct) : '-'}</TableCell>
@@ -619,7 +619,7 @@ function MonthlyRow({ label, values, annual, isBold, isSubItem, isNegative, high
         {label}
       </td>
       {values.map((v, i) => (
-        <td key={i} className={`text-right py-1.5 px-2 font-mono ${i === 0 ? 'bg-amber-50/30' : ''} ${
+        <td key={i} className={`text-right py-1.5 px-2 font-mono ${i <= 1 ? 'bg-amber-50/30' : ''} ${
           isBold ? 'font-bold text-gray-900' : isSubItem ? 'text-gray-400' :
           v < 0 ? 'text-red-500' : v === 0 ? 'text-gray-300' : 'text-gray-700'
         }`}>
