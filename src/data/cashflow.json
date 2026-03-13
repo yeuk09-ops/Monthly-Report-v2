@@ -621,7 +621,7 @@
       "amount": 121077,
       "previousAmount": 98438,
       "yearEndEstimate": 112137,
-      "note": "USD 시재: 약 8,350만불"
+      "note": "USD 시재: 약 8,557만불"
     },
     {
       "currency": "CNY",
@@ -629,7 +629,7 @@
       "amount": 66592,
       "previousAmount": 13560,
       "yearEndEstimate": 316258,
-      "note": "CNY 시재: 약 3.24억 위안"
+      "note": "CNY 시재: 약 3.2억 위안"
     }
   ],
   "totalAssets": {
