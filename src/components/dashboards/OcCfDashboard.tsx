@@ -587,10 +587,11 @@ export default function OcCfDashboard() {
 
       {/* ===== 통화별 기말잔액 ===== */}
       {(() => {
-        const totalPrev = data.currencyBalances.reduce((s, cb) => s + (cb.previousAmount || 0), 0);
-        const totalCur = data.currencyBalances.reduce((s, cb) => s + cb.amount, 0);
-        const totalChange = totalCur - totalPrev;
-        const totalYoY = totalPrev !== 0 ? (totalChange / Math.abs(totalPrev)) * 100 : undefined;
+        const totalDec25 = data.currencyBalances.reduce((s, cb) => s + (cb.previousAmount || 0), 0);
+        const totalFeb26 = data.currencyBalances.reduce((s, cb) => s + cb.amount, 0);
+        const totalChange = totalFeb26 - totalDec25;
+        const totalYearEnd = data.currencyBalances.reduce((s, cb) => s + (cb.yearEndEstimate || 0), 0);
+        const totalYoY = totalDec25 !== 0 ? ((totalYearEnd - totalDec25) / Math.abs(totalDec25)) * 100 : undefined;
 
         return (
           <Card className="border-0 shadow-md hover:shadow-xl transition-shadow overflow-hidden">
@@ -606,18 +607,22 @@ export default function OcCfDashboard() {
                 <thead>
                   <tr className="border-b-2 border-slate-200 text-slate-500">
                     <th className="text-left py-2 font-medium">통화</th>
-                    <th className="text-right py-2 font-medium">25년말</th>
-                    <th className="text-right py-2 font-medium">26년말(e)</th>
-                    <th className="text-right py-2 font-medium">차이</th>
+                    <th className="text-right py-2 font-medium">25년 12월말</th>
+                    <th className="text-right py-2 font-medium">26년 2월말</th>
+                    <th className="text-right py-2 font-medium">증감</th>
+                    <th className="text-right py-2 font-medium">26년말(추정)</th>
                     <th className="text-right py-2 font-medium">YoY</th>
                     <th className="text-left py-2 pl-4 font-medium">비고</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data.currencyBalances.map((cb) => {
-                    const change = cb.amount - (cb.previousAmount || 0);
-                    const yoy = cb.previousAmount && cb.previousAmount !== 0
-                      ? (change / Math.abs(cb.previousAmount)) * 100
+                    const dec25 = cb.previousAmount || 0;
+                    const feb26 = cb.amount;
+                    const change = feb26 - dec25;
+                    const yearEnd = cb.yearEndEstimate || 0;
+                    const yoy = dec25 !== 0
+                      ? ((yearEnd - dec25) / Math.abs(dec25)) * 100
                       : undefined;
                     return (
                       <tr key={cb.currency} className="border-b border-slate-100">
@@ -625,12 +630,13 @@ export default function OcCfDashboard() {
                           <DollarSign className="w-3.5 h-3.5 text-blue-400" />
                           {cb.label}
                         </td>
-                        <td className="py-2 text-right text-slate-500">{fmt(cb.previousAmount)}</td>
-                        <td className="py-2 text-right font-semibold text-slate-800">{fmt(cb.amount)}</td>
+                        <td className="py-2 text-right text-slate-500">{fmt(dec25)}</td>
+                        <td className="py-2 text-right font-semibold text-slate-800">{fmt(feb26)}</td>
                         <td className={`py-2 text-right font-semibold ${change > 0 ? 'text-emerald-600' : change < 0 ? 'text-red-600' : 'text-slate-400'}`}>
                           {change > 0 ? '+' : ''}{fmt(change)}
                         </td>
-                        <td className={`py-2 text-right ${change > 0 ? 'text-emerald-600' : change < 0 ? 'text-red-600' : 'text-slate-400'}`}>
+                        <td className="py-2 text-right font-semibold text-blue-700">{fmt(yearEnd)}</td>
+                        <td className={`py-2 text-right ${yoy !== undefined && yoy > 0 ? 'text-emerald-600' : yoy !== undefined && yoy < 0 ? 'text-red-600' : 'text-slate-400'}`}>
                           {yoy !== undefined ? `${yoy > 0 ? '+' : ''}${yoy.toFixed(1)}%` : '-'}
                         </td>
                         <td className="py-2 pl-4 text-xs text-slate-500">{cb.note || ''}</td>
@@ -640,12 +646,13 @@ export default function OcCfDashboard() {
                   {/* 합계 */}
                   <tr className="border-t-2 border-slate-300 font-bold">
                     <td className="py-2 text-slate-800">합계</td>
-                    <td className="py-2 text-right text-slate-600">{fmt(totalPrev)}</td>
-                    <td className="py-2 text-right text-slate-900">{fmt(totalCur)}</td>
+                    <td className="py-2 text-right text-slate-600">{fmt(totalDec25)}</td>
+                    <td className="py-2 text-right text-slate-900">{fmt(totalFeb26)}</td>
                     <td className={`py-2 text-right ${totalChange > 0 ? 'text-emerald-600' : totalChange < 0 ? 'text-red-600' : 'text-slate-400'}`}>
                       {totalChange > 0 ? '+' : ''}{fmt(totalChange)}
                     </td>
-                    <td className={`py-2 text-right ${totalChange > 0 ? 'text-emerald-600' : totalChange < 0 ? 'text-red-600' : 'text-slate-400'}`}>
+                    <td className="py-2 text-right font-semibold text-blue-700">{fmt(totalYearEnd)}</td>
+                    <td className={`py-2 text-right ${totalYoY !== undefined && totalYoY > 0 ? 'text-emerald-600' : totalYoY !== undefined && totalYoY < 0 ? 'text-red-600' : 'text-slate-400'}`}>
                       {totalYoY !== undefined ? `${totalYoY > 0 ? '+' : ''}${totalYoY.toFixed(1)}%` : '-'}
                     </td>
                     <td className="py-2 pl-4"></td>
