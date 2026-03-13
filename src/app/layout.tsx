@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'FNF 26.1월 BS/CF 리포트',
+  title: 'FNF 26.2월 BS/CF 리포트',
   description: 'F&F · F&F Holdings 재무상태표 · 자금계획 통합 대시보드',
 };
 
@@ -29,7 +29,7 @@ export default function RootLayout({
           {children}
         </main>
         <footer className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-600 text-slate-300 py-3 text-center text-xs">
-          FNF 26.1월 BS/CF 리포트 | F&F · F&F Holdings
+          FNF 26.2월 BS/CF 리포트 | F&F · F&F Holdings
         </footer>
       </body>
     </html>
