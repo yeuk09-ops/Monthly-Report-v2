@@ -107,6 +107,7 @@ export default function OcBsDashboard() {
 
   const getStatusBadge = (status: string) => {
     switch (status) {
+      case 'excellent': return <Badge className="bg-blue-100 text-blue-700">우수</Badge>;
       case 'normal': return <Badge className="bg-emerald-100 text-emerald-700">정상</Badge>;
       case 'warning': return <Badge className="bg-amber-100 text-amber-700">경계</Badge>;
       case 'danger': return <Badge className="bg-red-100 text-red-700">장기</Badge>;
@@ -115,7 +116,7 @@ export default function OcBsDashboard() {
   };
 
   const renderSectionHeader = (
-    sectionKey: string, title: string, feb25: number | undefined, jan26: number | undefined, feb26: number | undefined,
+    sectionKey: string, title: string, feb25: number | undefined, dec25: number | undefined, feb26: number | undefined,
     momChange: number | undefined, momChangePercent: number | undefined, yoyChange: number | undefined, yoyChangePercent: number | undefined, bgClass: string
   ) => (
     <TableRow className={`${bgClass} cursor-pointer hover:opacity-90`} onClick={() => toggleSection(sectionKey)}>
@@ -124,7 +125,7 @@ export default function OcBsDashboard() {
         {title}
       </TableCell>
       <TableCell className="text-right font-semibold">{formatNumber(feb25)}</TableCell>
-      <TableCell className="text-right font-semibold">{formatNumber(jan26)}</TableCell>
+      <TableCell className="text-right font-semibold">{formatNumber(dec25)}</TableCell>
       <TableCell className="text-right font-semibold bg-yellow-50/50">{formatNumber(feb26)}</TableCell>
       <TableCell className={`text-right font-semibold ${getChangeColor(momChange)}`}>
         {momChange !== undefined && momChange > 0 ? '+' : ''}{formatNumber(momChange)}
@@ -146,7 +147,7 @@ export default function OcBsDashboard() {
               <TableRow className="bg-gradient-to-r from-slate-700 to-slate-600">
                 <TableHead className="text-white w-[200px]">계정과목</TableHead>
                 <TableHead className="text-white text-right w-[110px]">25년 2월</TableHead>
-                <TableHead className="text-white text-right w-[110px]">26년 1월</TableHead>
+                <TableHead className="text-white text-right w-[110px]">25년 12월</TableHead>
                 <TableHead className="text-white text-right w-[110px]">26년 2월</TableHead>
                 <TableHead className="text-white text-right w-[100px]">월간증감</TableHead>
                 <TableHead className="text-white text-right w-[140px]">연간증감 (YoY)</TableHead>
@@ -158,7 +159,7 @@ export default function OcBsDashboard() {
                 'asset',
                 '자산총계',
                 balanceSheet.totals[0].feb25,
-                balanceSheet.totals[0].jan26,
+                balanceSheet.totals[0].dec25,
                 balanceSheet.totals[0].feb26,
                 balanceSheet.totals[0].momChange,
                 balanceSheet.totals[0].momChangePercent,
@@ -173,7 +174,7 @@ export default function OcBsDashboard() {
                   <TableRow key={idx} className={item.isSubItem ? 'text-gray-600' : ''}>
                     <TableCell className={item.isSubItem ? 'pl-10 text-sm' : 'pl-8'}>{item.label}</TableCell>
                     <TableCell className="text-right">{formatNumber(item.feb25)}</TableCell>
-                    <TableCell className="text-right">{formatNumber(item.jan26)}</TableCell>
+                    <TableCell className="text-right">{formatNumber(item.dec25)}</TableCell>
                     <TableCell className={`text-right ${item.highlight ? 'bg-yellow-50' : ''}`}>{formatNumber(item.feb26)}</TableCell>
                     <TableCell className={`text-right ${getChangeColor(item.momChange)}`}>
                       {item.momChange !== undefined && item.momChange > 0 ? '+' : ''}{formatNumber(item.momChange)}
@@ -190,7 +191,7 @@ export default function OcBsDashboard() {
                 'liability',
                 '부채총계',
                 balanceSheet.totals[1].feb25,
-                balanceSheet.totals[1].jan26,
+                balanceSheet.totals[1].dec25,
                 balanceSheet.totals[1].feb26,
                 balanceSheet.totals[1].momChange,
                 balanceSheet.totals[1].momChangePercent,
@@ -205,7 +206,7 @@ export default function OcBsDashboard() {
                   <TableRow key={idx} className={item.isSubItem ? 'text-gray-600' : ''}>
                     <TableCell className={item.isSubItem ? 'pl-10 text-sm' : 'pl-8'}>{item.label}</TableCell>
                     <TableCell className="text-right">{formatNumber(item.feb25)}</TableCell>
-                    <TableCell className="text-right">{formatNumber(item.jan26)}</TableCell>
+                    <TableCell className="text-right">{formatNumber(item.dec25)}</TableCell>
                     <TableCell className="text-right">{formatNumber(item.feb26)}</TableCell>
                     <TableCell className={`text-right ${getChangeColor(item.momChange, true)}`}>
                       {item.momChange !== undefined && item.momChange > 0 ? '+' : ''}{formatNumber(item.momChange)}
@@ -222,7 +223,7 @@ export default function OcBsDashboard() {
                 'equity',
                 '자본총계',
                 balanceSheet.totals[2].feb25,
-                balanceSheet.totals[2].jan26,
+                balanceSheet.totals[2].dec25,
                 balanceSheet.totals[2].feb26,
                 balanceSheet.totals[2].momChange,
                 balanceSheet.totals[2].momChangePercent,
@@ -237,7 +238,7 @@ export default function OcBsDashboard() {
                   <TableRow key={idx} className={item.isSubItem ? 'text-gray-600' : ''}>
                     <TableCell className={item.isSubItem ? 'pl-10 text-sm' : 'pl-8'}>{item.label}</TableCell>
                     <TableCell className="text-right">{formatNumber(item.feb25)}</TableCell>
-                    <TableCell className="text-right">{formatNumber(item.jan26)}</TableCell>
+                    <TableCell className="text-right">{formatNumber(item.dec25)}</TableCell>
                     <TableCell className="text-right">{formatNumber(item.feb26)}</TableCell>
                     <TableCell className={`text-right ${getChangeColor(item.momChange)}`}>
                       {item.momChange !== undefined && item.momChange > 0 ? '+' : ''}{formatNumber(item.momChange)}
@@ -262,7 +263,7 @@ export default function OcBsDashboard() {
             <TableHeader>
               <TableRow className="bg-gradient-to-r from-slate-700 to-slate-600">
                 <TableHead className="text-white w-[200px]">구분</TableHead>
-                <TableHead className="text-white text-right w-[140px]">26년 1월</TableHead>
+                <TableHead className="text-white text-right w-[140px]">25년 12월</TableHead>
                 <TableHead className="text-white text-right w-[140px]">26년 2월</TableHead>
                 <TableHead className="text-white text-right w-[120px]">증감</TableHead>
                 <TableHead className="text-white text-right w-[80px]">증감률</TableHead>
@@ -287,7 +288,7 @@ export default function OcBsDashboard() {
               {expandedSections.arDetail && workingCapital.ar && workingCapital.ar.map((item: any, idx) => (
                 <TableRow key={idx} className={item.warning ? 'bg-orange-50' : 'bg-gray-50'}>
                   <TableCell className={`pl-10 ${item.warning ? 'text-orange-700 font-medium' : ''}`}>{item.label}</TableCell>
-                  <TableCell className="text-right">{formatNumber(item.jan26)}</TableCell>
+                  <TableCell className="text-right">{formatNumber(item.dec25)}</TableCell>
                   <TableCell className="text-right">{formatNumber(item.feb26)}</TableCell>
                   <TableCell className={`text-right ${getChangeColor(item.change)}`}>{item.change !== undefined && item.change > 0 ? '+' : ''}{formatNumber(item.change)}</TableCell>
                   <TableCell className={`text-right ${getChangeColor(item.changePercent)}`}>{item.changePercent !== undefined && item.changePercent > 0 ? '+' : ''}{item.changePercent !== undefined ? item.changePercent.toFixed(1) : '-'}%</TableCell>
@@ -324,7 +325,7 @@ export default function OcBsDashboard() {
                   {brand.items.map((item, subIdx) => (
                     <TableRow key={subIdx} className="hover:bg-gray-50">
                       <TableCell className="pl-12 text-gray-600">{item.label}</TableCell>
-                      <TableCell className="text-right">{formatNumber(item.jan26)}</TableCell>
+                      <TableCell className="text-right">{formatNumber(item.dec25)}</TableCell>
                       <TableCell className="text-right">{formatNumber(item.feb26)}</TableCell>
                       <TableCell className={`text-right ${getChangeColor(item.change)}`}>{item.change !== undefined && item.change > 0 ? '+' : ''}{item.change}</TableCell>
                       <TableCell className={`text-right ${getChangeColor(item.changePercent)}`}>{item.changePercent !== undefined && item.changePercent > 0 ? '+' : ''}{item.changePercent !== undefined ? item.changePercent.toFixed(1) : '-'}%</TableCell>
@@ -468,9 +469,9 @@ export default function OcBsDashboard() {
                 {creditVerification.map((item, idx) => (
                   <TableRow key={idx} className={item.status === 'danger' ? 'bg-red-50' : item.status === 'warning' ? 'bg-amber-50' : ''}>
                     <TableCell className={`font-semibold ${item.status === 'danger' ? 'text-red-700' : ''}`}>{item.channel}</TableCell>
-                    <TableCell className="text-right">{item.nov}억</TableCell>
                     <TableCell className="text-right">{item.dec}억</TableCell>
                     <TableCell className="text-right">{item.jan}억</TableCell>
+                    <TableCell className="text-right">{item.feb}억</TableCell>
                     <TableCell className={`text-right ${item.status === 'danger' ? 'text-red-700 font-semibold' : ''}`}>{item.arBalance}억</TableCell>
                     <TableCell className={`text-right ${item.status === 'danger' ? 'text-red-700 font-semibold' : item.status === 'warning' ? 'text-orange-600' : ''}`}>{item.arRatio}%</TableCell>
                     <TableCell className={`text-right font-semibold ${item.status === 'danger' ? 'text-red-700' : ''}`}>{item.months}개월</TableCell>
@@ -498,8 +499,8 @@ export default function OcBsDashboard() {
                 : '-'}
             </p>
             <p className="text-sm text-emerald-600">
-              {balanceSheet.totals[1].jan26 && balanceSheet.totals[2].jan26 && balanceSheet.totals[1].feb26 && balanceSheet.totals[2].feb26
-                ? `전월 ${((balanceSheet.totals[1].jan26 / balanceSheet.totals[2].jan26) * 100).toFixed(1)}% → △${(((balanceSheet.totals[1].jan26 / balanceSheet.totals[2].jan26) * 100) - ((balanceSheet.totals[1].feb26 / balanceSheet.totals[2].feb26) * 100)).toFixed(1)}%p 개선`
+              {balanceSheet.totals[1].dec25 && balanceSheet.totals[2].dec25 && balanceSheet.totals[1].feb26 && balanceSheet.totals[2].feb26
+                ? `전월 ${((balanceSheet.totals[1].dec25 / balanceSheet.totals[2].dec25) * 100).toFixed(1)}% → △${(((balanceSheet.totals[1].dec25 / balanceSheet.totals[2].dec25) * 100) - ((balanceSheet.totals[1].feb26 / balanceSheet.totals[2].feb26) * 100)).toFixed(1)}%p 개선`
                 : '-'}
             </p>
           </CardContent>
@@ -513,8 +514,8 @@ export default function OcBsDashboard() {
                 : '-'}
             </p>
             <p className="text-sm text-emerald-600">
-              {balanceSheet.totals[2].jan26 && balanceSheet.totals[0].jan26 && balanceSheet.totals[2].feb26 && balanceSheet.totals[0].feb26
-                ? `전월 ${((balanceSheet.totals[2].jan26 / balanceSheet.totals[0].jan26) * 100).toFixed(1)}% → +${(((balanceSheet.totals[2].feb26 / balanceSheet.totals[0].feb26) * 100) - ((balanceSheet.totals[2].jan26 / balanceSheet.totals[0].jan26) * 100)).toFixed(1)}%p 개선`
+              {balanceSheet.totals[2].dec25 && balanceSheet.totals[0].dec25 && balanceSheet.totals[2].feb26 && balanceSheet.totals[0].feb26
+                ? `전월 ${((balanceSheet.totals[2].dec25 / balanceSheet.totals[0].dec25) * 100).toFixed(1)}% → +${(((balanceSheet.totals[2].feb26 / balanceSheet.totals[0].feb26) * 100) - ((balanceSheet.totals[2].dec25 / balanceSheet.totals[0].dec25) * 100)).toFixed(1)}%p 개선`
                 : '-'}
             </p>
           </CardContent>

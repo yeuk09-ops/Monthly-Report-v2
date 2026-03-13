@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import HcDashboard from '@/components/dashboards/HcDashboard';
+import OcBsDashboard from '@/components/dashboards/OcBsDashboard';
+import OcCfDashboard from '@/components/dashboards/OcCfDashboard';
 
 type TabKey = 'oc-bs' | 'oc-cf' | 'hc';
 
@@ -11,12 +13,6 @@ const tabs: { key: TabKey; label: string; sublabel: string }[] = [
   { key: 'oc-cf', label: 'OC CF', sublabel: 'F&F 자금계획' },
   { key: 'hc',    label: 'HC',    sublabel: 'F&F Holdings BS/CF' },
 ];
-
-// 외부 대시보드 URL (BS: 3001, CF: 3002)
-const EXTERNAL_DASHBOARDS: Record<string, string> = {
-  'oc-bs': 'http://localhost:3001/balance-sheet',
-  'oc-cf': 'http://localhost:3002',
-};
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState<TabKey>('oc-bs');
@@ -63,16 +59,8 @@ export default function Page() {
 
       {/* ===== TAB CONTENT ===== */}
       <div className="bg-white/50 min-h-[calc(100vh-200px)]">
-        {/* OC BS / OC CF: 기존 대시보드를 iframe으로 임베드 */}
-        {(activeTab === 'oc-bs' || activeTab === 'oc-cf') && (
-          <iframe
-            key={activeTab}
-            src={EXTERNAL_DASHBOARDS[activeTab]}
-            className="w-full border-0"
-            style={{ height: 'calc(100vh - 140px)' }}
-            title={activeTab === 'oc-bs' ? '26.2월 BS 대시보드' : '26.2월 CF 대시보드'}
-          />
-        )}
+        {activeTab === 'oc-bs' && <OcBsDashboard />}
+        {activeTab === 'oc-cf' && <OcCfDashboard />}
         {activeTab === 'hc' && <HcDashboard />}
       </div>
     </div>

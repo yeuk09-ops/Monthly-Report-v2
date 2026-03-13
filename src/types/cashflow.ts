@@ -40,10 +40,12 @@ export interface CashFlowFinancing {
 export interface CashFlowYoYItem {
   category: string;      // 영업, 투자, 조달
   label: string;
-  y25Value: number;
-  y26Value: number;
-  change: number;
+  y25Value: number | null;
+  y26Value: number | null;
+  change: number | null;
   note?: string;
+  isSummary?: boolean;
+  isSpacer?: boolean;
 }
 
 /** 통화별 기말잔액 */
@@ -52,6 +54,7 @@ export interface CashFlowCurrencyBalance {
   label: string;
   amount: number;
   previousAmount?: number;
+  yearEndEstimate?: number;
   note?: string;
 }
 
@@ -131,6 +134,35 @@ export interface CashFlowMonthlyTrend {
   isEstimate: boolean;
 }
 
+/** 외화예금 운용 분석 */
+export interface FxDepositAnalysis {
+  title: string;
+  unit: string;
+  comparison: {
+    label: string;
+    ratio: string;
+    sellCurrency: string;
+    sellAmount: number;
+    holdCurrency: string;
+    holdAmount: number;
+    interestRate: number;
+    fxRate: number;
+    krwValue: number;
+    annualInterest: number;
+  }[];
+  interestDiff: number;
+  scenarios: {
+    label: string;
+    fxRate: number;
+    krwValue?: number;
+    usdAmount?: number;
+    additionalUSD?: number;
+    effect?: string;
+    krwEffect?: string;
+    detail: string;
+  }[];
+}
+
 /** 전체 Cash Flow Report */
 export interface CashFlowReport {
   meta: {
@@ -158,4 +190,5 @@ export interface CashFlowReport {
   operatingCFBridge: OperatingCFBridge;
   workingCapitalDetail: WorkingCapitalDetailItem[];
   investmentYoY: InvestmentYoYItem[];
+  fxDepositAnalysis?: FxDepositAnalysis;
 }

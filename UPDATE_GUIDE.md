@@ -1,252 +1,172 @@
 # FNF 대시보드 - 월간 업데이트 기준서
 
-> **목적**: 26년 1월 → 2월(이후 매월) 데이터 업데이트 시 JSON 파일만 수정하여 대시보드 갱신
-> **원칙**: 컴포넌트(TSX) 코드 수정 없이, JSON 데이터 교체만으로 완료
-> **작성일**: 2026-03-10
+> **목적**: 매월 OC BS / OC CF / HC 데이터를 소스 대시보드에서 가져와 통합 대시보드 갱신
+> **원칙**: 소스 대시보드의 JSON 파일을 복사하여 반영 (컴포넌트 코드 수정 최소화)
+> **작성일**: 2026-03-13
+
+---
+
+## 소스 대시보드 위치
+
+| 탭 | 소스 프로젝트 경로 | JSON 파일 | 비고 |
+|---|---|---|---|
+| **OC BS** | `C:\Users\AC1144\AI_Fin_Analysis\Claude\Monthly_Report\fnf-dashboard_v2\` | `src/data/YYYY-MM.json` (예: `2026-02.json`) | 매월 새 파일 생성됨 |
+| **OC CF** | `C:\Users\AC1144\AI_Fin_Analysis\Claude\Monthly_Report\fnf_CF\cf-dashboard\` | `src/data/cashflow.json` | 기존 파일 갱신 |
+| **HC** | (엑셀 원천) `C:\Users\AC1144\AI_Fin_Analysis\Claude\Finance_Report V1\` | `26년 HC 재무제표(26.MM).xlsx` | 수동 JSON 변환 필요 |
 
 ---
 
 ## 업데이트 흐름 요약
 
 ```
-1. 원천 데이터 수집 (ERP/재무팀)
+1. 소스 대시보드에서 기준월 JSON 확인
+   ├── OC BS: Monthly_Report\fnf-dashboard_v2\src\data\YYYY-MM.json
+   ├── OC CF: Monthly_Report\fnf_CF\cf-dashboard\src\data\cashflow.json
+   └── HC:    Finance_Report V1\26년 HC 재무제표(26.MM).xlsx → hc-financial.json
      ↓
-2. JSON 파일 3개 수정
-   ├── oc-bs-2026-01.json  → oc-bs-2026-02.json (신규)
-   ├── cashflow.json       → 기존 파일 갱신
-   └── hc-financial.json   → 기존 파일 갱신
+2. JSON 파일 복사/반영
+   ├── OC BS: 소스 JSON → hc-dashboard\src\data\oc-bs-YYYY-MM.json
+   ├── OC CF: 소스 JSON → hc-dashboard\src\data\cashflow.json (직접 복사)
+   └── HC:    hc-financial.json 수동 갱신
      ↓
-3. 코드 변경 (import 경로)
-   └── OcBsDashboard.tsx의 import 경로만 변경
+3. 코드 변경
+   ├── OcBsDashboard.tsx: import 경로 + 컬럼명 매핑 확인
+   ├── page.tsx: 헤더 텍스트 (26.N월)
+   └── layout.tsx: 메타데이터/푸터
      ↓
-4. page.tsx 헤더 텍스트 변경 (26.1월 → 26.2월)
-     ↓
-5. npm run build → 검증 → git push → Vercel 자동배포
+4. npm run build → 검증 → git push → Vercel 자동배포
 ```
 
 ---
 
-## 1. OC BS 업데이트 (F&F 재무상태표)
+## 1. OC CF 업데이트 (가장 간단)
 
-### 1-1. 파일 생성
+### 1-1. 소스 확인
+
+```
+소스: C:\Users\AC1144\AI_Fin_Analysis\Claude\Monthly_Report\fnf_CF\cf-dashboard\src\data\cashflow.json
+대상: C:\Users\AC1144\AI_Fin_Analysis\Claude\Finance_Report V1\hc-dashboard\src\data\cashflow.json
+```
+
+### 1-2. 복사 명령
 
 ```bash
-# 1월 파일 복사 → 2월 파일 생성
-cp src/data/oc-bs-2026-01.json src/data/oc-bs-2026-02.json
+cp "C:/Users/AC1144/AI_Fin_Analysis/Claude/Monthly_Report/fnf_CF/cf-dashboard/src/data/cashflow.json" \
+   "C:/Users/AC1144/AI_Fin_Analysis/Claude/Finance_Report V1/hc-dashboard/src/data/cashflow.json"
 ```
 
-### 1-2. JSON 수정 항목 체크리스트
+### 1-3. 확인 포인트
 
-#### ✅ meta 섹션
-```jsonc
-{
-  "meta": {
-    "year": 2026,
-    "month": 2,                          // 1 → 2
-    "reportDate": "2026-02-28",          // 01-31 → 02-28
-    "updatedAt": "2026-03-15",           // 실제 업데이트 날짜
-    "status": "published"
-  }
-}
+- `meta.period`: 기준월 확인 (예: "2026년 2월 기준")
+- `kpi.*`: KPI 5개 수치 (기초/영업/투자/조달/기말)
+- `isEstimate`: 실적 확정월은 `false`, 추정월은 `true`
+- `monthlyTrend`: 차트 데이터 정상 여부
+- `operatingCFBridge`: 영업CF 구성 수식
+- 코드 변경 불필요 (동일한 CashFlowReport 타입)
+
+---
+
+## 2. OC BS 업데이트
+
+### 2-1. 소스 확인
+
+```
+소스: C:\Users\AC1144\AI_Fin_Analysis\Claude\Monthly_Report\fnf-dashboard_v2\src\data\
+      └── YYYY-MM.json (예: 2026-02.json, 2026-03.json ...)
+      └── index.json (사용 가능한 월 목록)
+대상: C:\Users\AC1144\AI_Fin_Analysis\Claude\Finance_Report V1\hc-dashboard\src\data\oc-bs-YYYY-MM.json
 ```
 
-#### ✅ financialData (핵심 재무데이터)
+### 2-2. 복사 명령 (예시: 26년 3월)
 
-**모든 항목에 대해 3개 값 갱신:**
-
-| 필드 | current | previousMonth | previousYear |
-|---|---|---|---|
-| 의미 | **26년 2월** (신규) | **26년 1월** (이전 current) | **25년 2월** |
-
-```jsonc
-"revenue": {
-  "current": 1700,          // ← 26년 2월 실적
-  "previousMonth": 1638,    // ← 이전 current값 (26년 1월)
-  "previousYear": 1580      // ← 25년 2월 실적
-}
-// 동일 패턴: domesticRevenue, exportRevenue, cogs, operatingProfit,
-//           totalAssets, currentAssets, cash, receivables, inventory,
-//           totalLiabilities, borrowings, payables, equity, retainedEarnings
+```bash
+cp "C:/Users/AC1144/AI_Fin_Analysis/Claude/Monthly_Report/fnf-dashboard_v2/src/data/2026-03.json" \
+   "C:/Users/AC1144/AI_Fin_Analysis/Claude/Finance_Report V1/hc-dashboard/src/data/oc-bs-2026-03.json"
 ```
 
-#### ✅ balanceSheet (재무상태표 테이블)
+### 2-3. ⚠️ 컬럼 구조 차이 (중요)
 
-**totals 배열 - 3개 항목(자산/부채/자본):**
-```jsonc
-"totals": [
-  {
-    "label": "자산총계",
-    "jan25": 20267,           // 그대로 유지 (전년 1월)
-    "dec25": 22155,           // 그대로 유지
-    "jan26": 23500,           // ← 26년 2월 값으로 교체 (컬럼명 jan26 유지 또는 feb26으로 변경)
-    "momChange": 562,         // ← 2월 - 1월
-    "momChangePercent": 2.4,  // ← (562/23500)*100
-    "yoyChange": 3233,        // ← 2월26 - 2월25
-    "yoyChangePercent": 15.9  // ← 비율
-  }
-]
+**소스(fnf-dashboard_v2)와 hc-dashboard의 balanceSheet 컬럼명이 다릅니다:**
+
+| 구분 | 소스 (fnf-dashboard_v2) | hc-dashboard (OcBsDashboard.tsx) |
+|---|---|---|
+| 비교 기준 | 전년동월 / 전년말 / **당월** / 당년말(e) | 전년동월 / **전월** / **당월** |
+| 컬럼명 예시 | `feb25` / `dec25` / `feb26` / `dec26e` | `feb25` / `jan26` / `feb26` |
+| 테이블 헤더 | 25년 2월 / 25년 12월 / 26년 2월 / 26년 12월(e) | 25년 2월 / 26년 1월 / 26년 2월 |
+
+**OcBsDashboard.tsx에서 참조하는 컬럼명:**
+
+```
+balanceSheet.totals[*]:  feb25, jan26, feb26, momChange, yoyChange, ...
+balanceSheet.assets[*]:  feb25, jan26, feb26, momChange, yoyChange, ...
+workingCapital.ar[*]:    jan26, feb26, change, changePercent
+workingCapital.inventory[*].items[*]: jan26, feb26, change, changePercent
+creditVerification[*]:   nov, dec, jan (3개월 슬라이딩)
 ```
 
-> **주의**: `jan26` 키 이름은 대시보드 헤더에 "26년 1월"로 하드코딩되어 있지 않음 (테이블 헤더는 JSON 외부). 값만 2월 데이터로 교체하면 됨.
+**소스 데이터의 실제 컬럼명:**
 
-**assets/liabilities/equity 배열** - 각 행의 `jan26` 값 갱신:
-```jsonc
-{ "label": "현금및현금성자산", "jan25": 990, "dec25": 2709, "jan26": 3300, ... }
-//                                                          ↑ 2월 값으로 변경
+```
+balanceSheet.totals[*]:  feb25, dec25, feb26, dec26e, momChange, yoyChange, ...
+balanceSheet.assets[*]:  feb25, dec25, feb26, dec26e, momChange, yoyChange, ...
+workingCapital.ar[*]:    dec25, feb26, change, changePercent
+workingCapital.inventory[*].items[*]: dec25, feb26, change, changePercent
+creditVerification[*]:   dec, jan, feb (3개월 슬라이딩)
 ```
 
-#### ✅ workingCapital (운전자본)
-- `ar[]` → 매출채권 상세 (dec25, jan26 → dec25 유지, jan26을 2월값으로)
-- `inventory[]` → 브랜드별 재고 (동일 패턴)
+### 2-4. 반영 방법 (2가지 중 택 1)
 
-#### ✅ creditVerification (여신기준 검증)
-- 3개월 슬라이딩: `nov/dec/jan` → `dec/jan/feb`
-- `arBalance` → 2월말 채권잔액
-- `months`, `prevMonths` → 재계산
+#### 방법 A: 컴포넌트 수정 (권장 - 1회 수정 후 매월 직접 복사 가능)
 
-#### ✅ annualized (연환산)
-```jsonc
-"annualized": {
-  "revenue": 20400,      // 2월 매출 × 12
-  "cogs": 7200           // 2월 원가 × 12
-}
+OcBsDashboard.tsx를 소스의 컬럼명에 맞게 수정:
+
+1. **balanceSheet 테이블 헤더**: "26년 1월" → "25년 12월", 4열 추가 시 "26년 12월(e)"
+2. **컬럼 참조**: `jan26` → `dec25`, `dec26e` 추가
+3. **workingCapital.ar**: `jan26` → `dec25`
+4. **workingCapital.inventory**: `jan26` → `dec25`
+5. **creditVerification**: `nov/dec/jan` → `dec/jan/feb`
+
+#### 방법 B: JSON 변환 (코드 수정 없이)
+
+소스 JSON을 hc-dashboard 형식으로 변환:
+
+```
+dec25 → jan26 (이전 비교월 컬럼에 매핑)
+dec/jan/feb → nov/dec/jan (여신검증 컬럼 시프트)
 ```
 
-### 1-3. import 경로 변경
+### 2-5. import 경로 변경
 
 ```typescript
 // src/components/dashboards/OcBsDashboard.tsx (4행)
 // 변경 전:
-import rawData from '@/data/oc-bs-2026-01.json';
-// 변경 후:
 import rawData from '@/data/oc-bs-2026-02.json';
+// 변경 후:
+import rawData from '@/data/oc-bs-2026-03.json';
 ```
 
 ---
 
-## 2. OC CF 업데이트 (F&F 자금계획)
+## 3. HC 업데이트
 
-### 2-1. 파일: `src/data/cashflow.json` (기존 파일 직접 수정)
+### 3-1. 소스
 
-#### ✅ meta 섹션
-```jsonc
-"meta": {
-  "title": "F&F 26년 자금계획",
-  "period": "2026년 2월 기준",       // 1월 → 2월
-  "updatedAt": "2026-03-20"          // 실제 날짜
-}
+```
+엑셀: C:\Users\AC1144\AI_Fin_Analysis\Claude\Finance_Report V1\26년 HC 재무제표(26.MM).xlsx
+대상: hc-dashboard\src\data\hc-financial.json
 ```
 
-#### ✅ kpi (KPI 요약)
-```jsonc
-"kpi": {
-  "beginningCash": 270713,     // 그대로 (연초 기초)
-  "operatingCF": 500000,       // ← 연간 영업CF 갱신 (추정 수정)
-  "investmentCF": -65000,      // ← 연간 투자CF 갱신
-  "financingCF": 0,
-  "endingCash": 705000,        // ← 연간 기말현금 갱신
-  // Prev 값은 그대로 유지 (25년 실적 고정)
-}
-```
+### 3-2. 수동 갱신 항목
 
-#### ✅ 월별 데이터 갱신 (핵심)
+HC 데이터는 엑셀에서 수동으로 JSON을 갱신해야 합니다:
 
-**실적 확정 처리 (1→2월):**
-
-```jsonc
-"operating": {
-  "total": {
-    "y26Monthly": {
-      "1": 41281,       // 1월 실적 (확정 유지)
-      "2": 70000,       // ← 2월 실적으로 교체 (이전 추정 67312 → 실적)
-      "3": 28000,       // ← 추정치 수정 가능
-      ...
-    },
-    "isEstimate": {
-      "1": false,       // 실적 (유지)
-      "2": false,       // ← true → false (실적 확정!)
-      "3": true,        // 추정 (유지)
-      ...
-    }
-  }
-}
-```
-
-**동일 패턴 적용 대상:**
-- `beginningCash.y26Monthly`
-- `operating.total.y26Monthly`
-- `investment.total.y26Monthly` + `investment.items[*].y26Monthly`
-- `financing.total.y26Monthly` + `financing.items[*].y26Monthly`
-- `endingCash.y26Monthly`
-
-#### ✅ monthlyTrend (차트 데이터)
-- 2월 실적 데이터 추가/수정
-- `isEstimate: false`로 변경
-
-#### ✅ 분석 텍스트 갱신
-- `insights[]` → 2월 기준 인사이트
-- `actionPlan[]` → 업데이트된 전략
-- `operatingCFAnalysis.items[*]` → 실적 반영
-- `workingCapitalDetail` → 2월말 기준 BS
-
-#### ✅ yoyComparison (전년비교)
-- `y26Value` → 2월까지 반영된 연간 추정
-
----
-
-## 3. HC 업데이트 (F&F Holdings BS/CF)
-
-### 3-1. 파일: `src/data/hc-financial.json` (기존 파일 직접 수정)
-
-#### ✅ meta 섹션
-```jsonc
-"meta": {
-  "currentMonth": "2026년 2월",       // 1월 → 2월
-  "updatedAt": "2026-03-20"
-}
-```
-
-#### ✅ bsImpact (BS 핵심영향)
-```jsonc
-"keyItems": [
-  { "label": "이익잉여금",
-    "dec25": 25007.9,
-    "jan26": 25020.0,          // ← 2월 실적으로 변경 (키명 jan26 유지)
-    "dec26e": 25366.5,         // ← 연말 추정 수정 가능
-    "change": 358.5,
-    "driver": "순이익 553.9억 - 배당금 195.3억" }
-]
-```
-
-#### ✅ cashImpact (현금변동)
-- `flow.*` → 기초/기말현금 실적 반영
-- `waterfall[]` → 값 갱신 (기초현금, 영업CF 등)
-- `*Detail[]` → CF 상세 내역 갱신
-
-#### ✅ balanceSheet (BS 테이블)
-- `assets/liabilities/equity` → `jan26` 값을 2월 실적으로 교체
-- `totals[]` → 자산/부채/자본총계 갱신
-
-#### ✅ ratios (재무비율)
-```jsonc
-"debtRatio": { "label": "부채비율", "dec25": 0.4, "jan26": 0.5, "dec26e": 0.8, "unit": "%" }
-//                                                  ↑ 2월 실적
-```
-
-#### ✅ assetComposition (파이차트)
-- 각 항목의 `value` → 2월말 기준
-
-#### ✅ assetThreshold (2조원 규제)
-```jsonc
-"current": { "jan26": 19800.0, "dec26e": 20191.1 }
-//                     ↑ 2월 자산총계 실적
-```
-
-#### ✅ monthlyCashPlan (월별 자금계획표)
-- `beginningCash[1]` (2월) → 실적 반영
-- `operatingCF[1]` (2월) → 실적 반영
-- `endingCash[1]` (2월) → 실적 반영
-- 3월 이후 추정치 수정 가능
+1. `meta.currentMonth`, `meta.updatedAt`
+2. `bsImpact.keyItems[*].jan26` → 해당월 실적으로 변경
+3. `balanceSheet.assets/liabilities/equity/totals` → 해당월 실적
+4. `cashImpact.flow` → 기초/기말현금 실적
+5. `monthlyCashPlan` → 실적 확정월 반영
+6. `assetThreshold.current.jan26` → 해당월 자산총계 실적
+7. `ratios` → 재무비율 갱신
 
 ---
 
@@ -255,24 +175,21 @@ import rawData from '@/data/oc-bs-2026-02.json';
 ### 4-1. page.tsx (탭 쉘 헤더)
 
 ```typescript
-// src/app/page.tsx - 헤더 텍스트 변경
-<h1>FNF 26.2월 BS/CF 리포트</h1>      // 26.1월 → 26.2월
-<Badge>26년 2월</Badge>                // 26년 1월 → 26년 2월
+// src/app/page.tsx
+<h1>FNF 26.N월 BS/CF 리포트</h1>      // N = 기준월
+<Badge>26년 N월</Badge>                // N = 기준월
 ```
 
 ### 4-2. layout.tsx (메타데이터/푸터)
 
 ```typescript
-// title, footer 텍스트 변경
-title: 'FNF 26.2월 BS/CF 리포트'
-footer: 'FNF 26.2월 BS/CF 리포트 | F&F · F&F Holdings'
+title: 'FNF 26.N월 BS/CF 리포트'
+footer: 'FNF 26.N월 BS/CF 리포트 | F&F · F&F Holdings'
 ```
 
 ---
 
 ## 5. 검증 체크리스트
-
-업데이트 후 반드시 확인:
 
 ```
 □ npm run dev → http://localhost:3000 정상 로드
@@ -283,14 +200,14 @@ footer: 'FNF 26.2월 BS/CF 리포트 | F&F · F&F Holdings'
   □ 여신기준 3개월 슬라이딩 정상
 □ OC CF 탭
   □ KPI 카드 5개 숫자 정상
-  □ 월별 차트 2월 실적 반영
+  □ 월별 차트 실적 반영
   □ CF 상세 테이블 값 일치
-  □ 투자CF 워터폴 차트 정상
+  □ 영업CF Bridge 수식 정상
 □ HC 탭
-  □ BS 핵심영향 KPI 4개 정상
+  □ BS 핵심영향 KPI 정상
   □ 2조원 ALERT 배너 수치 정상
   □ BS 테이블 숫자 정상
-  □ 워터폴 차트 정상 (기초→기말)
+  □ 워터폴 차트 정상
   □ 월별 자금계획표 정상
 □ 콘솔 에러 없음
 □ npm run build 성공
@@ -301,35 +218,61 @@ footer: 'FNF 26.2월 BS/CF 리포트 | F&F · F&F Holdings'
 ## 6. 배포
 
 ```bash
-# 1. 변경 커밋
 git add src/data/ src/app/page.tsx src/app/layout.tsx
-git add src/components/dashboards/OcBsDashboard.tsx  # import 경로 변경 시
-git commit -m "Update: 26년 2월 데이터 반영"
-
-# 2. 푸시 → Vercel 자동배포
-git push origin main
+git add src/components/dashboards/OcBsDashboard.tsx  # BS import 경로 변경 시
+git commit -m "Update: 26년 N월 데이터 반영"
+git push origin main  # → Vercel 자동배포
 ```
 
 ---
 
-## 부록: 데이터 수집 체크리스트
+## 부록: 데이터 소스 요약
 
-### OC (F&F) 데이터 소스
+### OC BS 소스 JSON 구조 (`fnf-dashboard_v2/src/data/YYYY-MM.json`)
 
-| 항목 | 소스 | 담당 |
-|---|---|---|
-| 매출/원가/영업이익 | ERP 손익 마감 | 재경팀 |
-| BS (자산/부채/자본) | ERP BS 마감 | 재경팀 |
-| 매출채권 상세 (채널별) | 채권관리 시스템 | 재경팀 |
-| 재고자산 상세 (브랜드별) | WMS/ERP | 물류팀 |
-| 자금계획 (월별 CF) | 자금팀 월간 리포트 | 자금팀 |
-| 통화별 잔액 | 은행 계좌 조회 | 재경팀 |
+```
+├── meta: { year, month, reportDate, updatedAt, status }
+├── financialData: { revenue, cogs, operatingProfit, totalAssets, cash, receivables, inventory, ... }
+│     └── 각 항목: { current, currentYtd, previousMonth, previousYear, previousYearYtd }
+├── incomeStatement: { revenue[], costs[], operatingProfit }
+├── channelSales: [{ channel, current, previous, yoy }]
+├── exportSales: [{ region, current, previous, yoy }]
+├── brandSales: [{ brand, current, previous, yoy }]
+├── balanceSheet: { assets[], liabilities[], equity[], totals[] }
+│     └── 컬럼: feb25, dec25, feb26, dec26e (기준월에 따라 변동)
+├── workingCapital: { nwc, components[], ar[], arNote, inventory[] }
+│     └── ar[]: { label, dec25, feb26, change, changePercent }
+│     └── inventory[]: { brand, items[{ label, dec25, feb26, change, changePercent }] }
+├── creditVerification: [{ channel, dec, jan, feb, arBalance, arRatio, months, status, notes[] }]
+├── annualized: { revenue, cogs, operatingProfit, ... }
+├── aiInsights: { positive[], warning[] }
+├── ratios: { profitability, stability, activity }
+├── notes: []
+└── unifiedInsights: { positive[], warning[] }
+```
 
-### HC (F&F Holdings) 데이터 소스
+### OC CF 소스 JSON 구조 (`cf-dashboard/src/data/cashflow.json`)
 
-| 항목 | 소스 | 담당 |
-|---|---|---|
-| 별도 BS/P&L | ERP 별도재무제표 | 재경팀 |
-| 배당수입/처분이익 | 이사회 결의/계약 | 재경팀 |
-| 월별 자금계획 | 지주 자금팀 | 자금팀 |
-| 규제 요건 변동 | 법무팀/외부자문 | 법무팀 |
+```
+├── meta: { title, period, unit, updatedAt }
+├── kpi: { beginningCash, operatingCF, investmentCF, financingCF, endingCash, *Prev }
+├── beginningCash: { label, y24Annual, y25H1, y25Monthly, y25Total, y26Monthly, y26Total, isEstimate }
+├── operating: { total: CashFlowLineItem, subItems[] }
+├── investment: { total: CashFlowLineItem, items[] }
+├── financing: { total: CashFlowLineItem, items[] }
+├── endingCash: CashFlowLineItem
+├── ocBorrowingBalance: CashFlowLineItem
+├── currencyBalances: [{ currency, label, amount, previousAmount, yearEndEstimate, note }]
+├── totalAssets: CashFlowLineItem
+├── yoyComparison: [{ category, label, y25Value, y26Value, change, note, isSummary?, isSpacer? }]
+├── highlights: [{ label, value, detail, change, changeNote }]
+├── monthlyTrend: [{ month, displayLabel, operatingCF, investmentCF, endingCash, isEstimate }]
+├── insights: []
+├── warnings: []
+├── actionPlan: []
+├── operatingCFAnalysis: { summary, items[] }
+├── operatingCFBridge: { total, operatingProfit, workingCapital, nonCash, others }
+├── workingCapitalDetail: [{ label, y26Value, y25Value, change }]
+├── investmentYoY: [{ label, y25Value, y26Value, change, note }]
+└── fxDepositAnalysis: { title, unit, comparison[], interestDiff, scenarios[] }
+```

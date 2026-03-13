@@ -612,6 +612,7 @@
       "label": "기말잔액(KRW)",
       "amount": 226339,
       "previousAmount": 203760,
+      "yearEndEstimate": 258940,
       "note": "원화 시재 (2월 기준)"
     },
     {
@@ -619,6 +620,7 @@
       "label": "기말잔액(USD)",
       "amount": 121077,
       "previousAmount": 98438,
+      "yearEndEstimate": 112137,
       "note": "USD 시재: 약 8,350만불"
     },
     {
@@ -626,6 +628,7 @@
       "label": "기말잔액(CNY)",
       "amount": 66592,
       "previousAmount": 13560,
+      "yearEndEstimate": 316258,
       "note": "CNY 시재: 약 3.24억 위안"
     }
   ],
@@ -645,51 +648,69 @@
   },
   "yoyComparison": [
     {
+      "category": "",
+      "label": "기초현금",
+      "y25Value": 54804,
+      "y26Value": 270714,
+      "change": null,
+      "note": "",
+      "isSummary": true
+    },
+    {
       "category": "영업",
       "label": "국내수금",
       "y25Value": 641665,
-      "y26Value": 717785,
-      "change": 76120,
-      "note": "내수 성장 +4.7%(2월 YoY), 26Y 추정 7,178억"
+      "y26Value": 697785,
+      "change": 56120,
+      "note": "내수출고 10% 증가 반영"
     },
     {
       "category": "영업",
       "label": "수출수금",
-      "y25Value": 827229,
-      "y26Value": 694486,
-      "change": -132743,
-      "note": "수출수금 1,327억 감소 - 중국 시장 둔화(2월 -30.8% YoY)"
+      "y25Value": 841534,
+      "y26Value": 653386,
+      "change": -105948,
+      "note": "수출수금 1,900억 감소 (26년 중국법인 매입계획 25년 대비 77% 수준)"
+    },
+    {
+      "category": "영업",
+      "label": "지연수금",
+      "y25Value": -41100,
+      "y26Value": 41100,
+      "change": null,
+      "note": ""
     },
     {
       "category": "영업",
       "label": "생산비",
-      "y25Value": -686125,
-      "y26Value": -759328,
-      "change": -73203,
-      "note": "생산지급액 증가 (V+ 기준)"
-    },
-    {
-      "category": "영업",
-      "label": "관리비/판관비",
-      "y25Value": -22869,
-      "y26Value": -24656,
-      "change": -1787,
-      "note": "판관비 소폭 증가"
+      "y25Value": -612237,
+      "y26Value": -554290,
+      "change": 57947,
+      "note": "전년대비 매출원가 10% 감소 반영(재고·판매 등)"
     },
     {
       "category": "영업",
       "label": "기타",
-      "y25Value": -280233,
-      "y26Value": -155415,
-      "change": 124818,
-      "note": "기타 운전자본 및 비현금항목 포함"
+      "y25Value": -350195,
+      "y26Value": -365109,
+      "change": -14914,
+      "note": ""
+    },
+    {
+      "category": "영업",
+      "label": "",
+      "y25Value": null,
+      "y26Value": null,
+      "change": 0,
+      "note": "",
+      "isSpacer": true
     },
     {
       "category": "투자",
       "label": "법인세",
       "y25Value": -110330,
-      "y26Value": -122619,
-      "change": -12289,
+      "y26Value": -123619,
+      "change": -13289,
       "note": ""
     },
     {
@@ -706,7 +727,7 @@
       "y25Value": -48033,
       "y26Value": 37723,
       "change": 85756,
-      "note": "STO 차입금 상환 기존 2200만불 + 추가 300만불"
+      "note": "STO 차입금 상환 기존 2200만불 + 수가 300만불"
     },
     {
       "category": "투자",
@@ -720,8 +741,8 @@
       "category": "투자",
       "label": "기타",
       "y25Value": 5559,
-      "y26Value": -8355,
-      "change": -13914,
+      "y26Value": -8354,
+      "change": -13913,
       "note": ""
     },
     {
@@ -731,6 +752,24 @@
       "y26Value": 0,
       "change": 45414,
       "note": "현재 차입금 없음"
+    },
+    {
+      "category": "",
+      "label": "CF 계",
+      "y25Value": 215910,
+      "y26Value": 415622,
+      "change": 199712,
+      "note": "",
+      "isSummary": true
+    },
+    {
+      "category": "",
+      "label": "기말현금",
+      "y25Value": 270714,
+      "y26Value": 686336,
+      "change": null,
+      "note": "",
+      "isSummary": true
     }
   ],
   "highlights": [
@@ -990,9 +1029,9 @@
       {
         "category": "운전자본 증감",
         "y25Value": -53556,
-        "y26Value": -3403,
-        "change": 50153,
-        "detail": "2월 매출채권 1,484억(전월 2,350억, -37%↓) / 재고자산 2,302억(+5.0%) / 매입채무 881억(-2.7%↓). NWC 2,905억(전기 3,253억 대비 -348억 개선)"
+        "y26Value": -2700,
+        "change": 50856,
+        "detail": "26년말(추정) 매출채권 1,999억 / 재고자산(-충당금) 2,134억 / 매입채무 853억. NWC 3,280억(전기 3,253억 대비 +27억 증가)"
       },
       {
         "category": "비현금항목",
@@ -1011,8 +1050,8 @@
       {
         "category": "기타운전자본 증감",
         "y25Value": 15014,
-        "y26Value": 31540,
-        "change": 16526,
+        "y26Value": 30837,
+        "change": 15823,
         "detail": "자가임차료, 미지급금, 선급금, 로열티 등 기타 운전자본 항목 (전체 정합성 조정 포함)"
       }
     ]
@@ -1020,28 +1059,28 @@
   "operatingCFBridge": {
     "total": 472872,
     "operatingProfit": 404256,
-    "workingCapital": -3403,
+    "workingCapital": -2700,
     "nonCash": 40479,
-    "others": 31540
+    "others": 30837
   },
   "workingCapitalDetail": [
     {
       "label": "매출채권",
-      "y26Value": 1484,
+      "y26Value": 1999,
       "y25Value": 1965,
-      "change": -481
+      "change": 34
     },
     {
       "label": "재고자산(-평가충당금)",
-      "y26Value": 2199,
-      "y25Value": 2086,
-      "change": 113
+      "y26Value": 2134,
+      "y25Value": 2193,
+      "change": -59
     },
     {
       "label": "매입채무",
-      "y26Value": 881,
+      "y26Value": 853,
       "y25Value": 905,
-      "change": -24
+      "change": -52
     }
   ],
   "investmentYoY": [
@@ -1080,5 +1119,53 @@
       "change": -13914,
       "note": "CAPEX, 원천세, 연금 등 경상 투자지출"
     }
-  ]
+  ],
+  "fxDepositAnalysis": {
+    "title": "외화예금(기말잔액) 운용 분석",
+    "unit": "백만위안, 천불, 백만원",
+    "comparison": [
+      {
+        "label": "USD 환전보유",
+        "ratio": "51%",
+        "sellCurrency": "CNY",
+        "sellAmount": 1539,
+        "holdCurrency": "USD",
+        "holdAmount": 223716,
+        "interestRate": 3.19,
+        "fxRate": 6.88,
+        "krwValue": 322599,
+        "annualInterest": 5083
+      },
+      {
+        "label": "CNY 예금보유",
+        "ratio": "51%",
+        "sellCurrency": "CNY",
+        "sellAmount": 1539,
+        "holdCurrency": "CNY",
+        "holdAmount": 1539,
+        "interestRate": 1.30,
+        "fxRate": 209.58,
+        "krwValue": 322599,
+        "annualInterest": 2072
+      }
+    ],
+    "interestDiff": -3011,
+    "scenarios": [
+      {
+        "label": "CNY 환율 2원/위안 상승 시",
+        "fxRate": 211.58,
+        "krwValue": 325677,
+        "effect": "보유원화 약 30억원 증가",
+        "detail": "CNY 환율 2원 상승 시, USD 예금금리와의 이자수익 차이 (30억원) 보전 가능"
+      },
+      {
+        "label": "기말환율 하락 후 CNY 매도 USD 매수 시",
+        "fxRate": 6.70,
+        "usdAmount": 229741,
+        "additionalUSD": 6024,
+        "krwEffect": "원화 환산 시 약 87억원 추가확보",
+        "detail": "USD/CNY 환율 하락 시, 연말기준 추가 확보 가능한 USD 금액 증가 (삼성증권 전망 치 6.7 반영)"
+      }
+    ]
+  }
 }
